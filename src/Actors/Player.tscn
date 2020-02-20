@@ -12,7 +12,6 @@ func _on_EnemyDetector_area_entered(area):
 func _on_EnemyDetector_body_entered(body):
 	queue_free()
 
-
 func _physics_process(delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released(\"jump\") and _velocity.y < 0.0
 	var direction: = get_direction()
@@ -34,6 +33,13 @@ func calculate_move_velocity(
 	var out: = linear_velocity
 	out.x = speed.x * direction.x
 	out.y += gravity * get_physics_process_delta_time()
+	#if direction x is greater than 0 it starts animationplayertest walk animation
+	if direction.x > 0:
+		get_node(\"AnimationPlayertest\").play(\"walk\")
+	if direction.x < 0:
+		get_node(\"AnimationPlayertest\").play_backwards(\"walk\")
+	if direction.x == 0:
+		get_node(\"AnimationPlayertest\").stop()
 	if direction.y == -1.0:
 		out.y = speed.y * direction.y 
 	if is_jump_interrupted:
