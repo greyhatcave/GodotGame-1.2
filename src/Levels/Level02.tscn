@@ -10,10 +10,10 @@
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="TileSet" id=3]
 0/name = "tileset.png 0"
 0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
@@ -52,13 +52,12 @@ points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 4 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
 
-[sub_resource type="Animation" id=3]
-resource_name = "walk"
+[sub_resource type="Animation" id=4]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -94,7 +93,7 @@ __meta__ = {
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 56, 264 )
-tile_set = SubResource( 2 )
+tile_set = SubResource( 3 )
 cell_size = Vector2( 80, 64 )
 collision_layer = 8
 collision_mask = 0
@@ -114,6 +113,6 @@ hframes = 6
 limit_right = 7500
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
-anims/walk = SubResource( 3 )
+anims/walk = SubResource( 4 )
 
 [editable path="Player"]

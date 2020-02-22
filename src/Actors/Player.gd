@@ -1,6 +1,8 @@
 extends Actor
 export var stomp_impulse: = 1000.0
 
+const FIREBALL = preload("res://src/Objects/Fireball.tscn")
+
 func _on_EnemyDetector_area_entered(area):
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 	
@@ -13,7 +15,7 @@ func _physics_process(delta: float) -> void:
 	var direction: = get_direction()
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
-
+	
 
 func get_direction() -> Vector2:
 	return Vector2(
@@ -32,11 +34,17 @@ func calculate_move_velocity(
 	var out: = linear_velocity
 	out.x = speed.x * direction.x
 	out.y += gravity * get_physics_process_delta_time()
+	#if direction x is greater than 0 it starts animationplayertest walk animation
+	if direction.x > 0:
+		get_node("AnimationPlayertest").play("walk")
+	if direction.x < 0:
+		get_node("AnimationPlayertest").play_backwards("walk")
+	if direction.x == 0:
+		get_node("AnimationPlayertest").stop()
 	if direction.y == -1.0:
-		out.y = speed.y * direction.y
+		out.y = speed.y * direction.y 
 	if is_jump_interrupted:
 		out.y = 0.0
-	
 	return out
 
 func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vector2:
