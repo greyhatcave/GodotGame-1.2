@@ -1,37 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/fire.png" type="Texture" id=1]
-[ext_resource path="res://src/Objects/Fireball.gd" type="Script" id=2]
+[ext_resource path="res://assets/light.png" type="Texture" id=1]
 
-[sub_resource type="Animation" id=1]
-resource_name = "fireball"
-length = 1.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimationPlayer/fire:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5 ]
-}
+[sub_resource type="CircleShape2D" id=1]
+radius = 23.0217
 
-[node name="Fireball" type="Area2D"]
-script = ExtResource( 2 )
+[node name="Fireball" type="RigidBody2D"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "fireball"
-anims/fireball = SubResource( 1 )
-
-[node name="fire" type="Sprite" parent="AnimationPlayer"]
-position = Vector2( 84, 603 )
-scale = Vector2( 0.414063, 0.414063 )
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.746066, 0.32737 )
+rotation = 1.5708
+scale = Vector2( 0.094426, 0.0936944 )
 texture = ExtResource( 1 )
-hframes = 6
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
