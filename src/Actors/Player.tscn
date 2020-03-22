@@ -5,8 +5,6 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Actor
 
-var fireball = preload(\"res://src/Objects/Fireball.tscn\")
-export var fireball_speed = 4000
 
 func _physics_process(delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released(\"jump\") and _velocity.y < 0.0
@@ -20,15 +18,6 @@ func get_direction() -> Vector2:
 		-1.0 if Input.is_action_just_pressed(\"jump\") and is_on_floor() else 1.0
 	)
 
-func _process(delta):
-	look_at(get_global_mouse_position())
-	
-	if Input.is_action_just_pressed(\"fire\"):
-		var fireball_instance = fireball.instance()
-		fireball_instance.position = $FirePoint.get_global_position()
-		fireball_instance.rotation_degrees = rotation_degrees
-		fireball_instance.apply_impulse(Vector2(), Vector2(fireball_speed, 0).rotated(rotation))
-		get_tree().get_root().add_child(fireball_instance)
 
 func calculate_move_velocity(
 		linear_velocity: Vector2,
@@ -39,13 +28,6 @@ func calculate_move_velocity(
 	var out: = linear_velocity
 	out.x = speed.x * direction.x
 	out.y += gravity * get_physics_process_delta_time()
-	#if direction x is greater than 0 it 	starts animationplayertest walk animation
-	if direction.x > 0:
-		get_node(\"AnimationPlayertest\").play(\"walk\")
-	if direction.x < 0:
-		get_node(\"AnimationPlayertest\").play_backwards(\"walk\")
-	if direction.x == 0:
-		pass
 	if direction.y == -1.0:
 		out.y = speed.y * direction.y 
 	if is_jump_interrupted:
@@ -84,6 +66,3 @@ drag_margin_right = 0.0
 position = Vector2( 0, -49 )
 rotation = 1.5708
 shape = SubResource( 2 )
-
-[node name="FirePoint" type="Node2D" parent="."]
-position = Vector2( 20, -20 )

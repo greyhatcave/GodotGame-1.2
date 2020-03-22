@@ -4,10 +4,10 @@
 [ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 37.0689, 58.1258 )
+extents = Vector2( 46.1473, 58.1258 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 41.2589, 61.5012 )
+extents = Vector2( 44.7506, 61.5012 )
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 2
@@ -15,7 +15,7 @@ collision_mask = 9
 script = ExtResource( 2 )
 
 [node name="enemy" type="Sprite" parent="."]
-position = Vector2( 18.1568, -55.9834 )
+position = Vector2( 20.9502, -53.0737 )
 scale = Vector2( 0.198965, 0.269112 )
 texture = ExtResource( 1 )
 
@@ -24,8 +24,8 @@ position = Vector2( -11.1734, -57.3468 )
 shape = SubResource( 1 )
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
-position = Vector2( -9.77675, -20.0784 )
-scale = Vector2( 0.804465, 1.90784 )
+position = Vector2( -10.1259, -20.0784 )
+scale = Vector2( 0.811448, 1.90784 )
 rect = Rect2( -50, -50, 100, 60 )
 process_parent = true
 physics_process_parent = true
