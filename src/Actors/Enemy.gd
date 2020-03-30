@@ -1,13 +1,26 @@
 extends "res://src/Actors/Actor.gd"
 
 
+var max_hp = 3
+var current_hp
+
+
 func _ready() -> void:
 	set_physics_process(false)
 	_velocity.x = -speed.x
+	current_hp = max_hp
 
-func _on_StompDetector_body_entered(body):
-	get_node("CollisionShape2D").disabled = true
+func OnHit(damage):
+	print("I got hit")
+	current_hp -= damage
+	get_node("HealthBar").value = int((float(current_hp) / max_hp) * 100)
+	if current_hp <= 0:
+		OnDeath()
+
+func OnDeath():
 	queue_free()
+
+
 
 
 func _physics_process(delta: float) -> void:
