@@ -176,12 +176,13 @@ position = Vector2( 3.49902, -46.6539 )
 script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Player/Gun"]
-position = Vector2( 17.4917, 23.6631 )
 scale = Vector2( 0.0939238, 0.0627236 )
 texture = ExtResource( 5 )
 
 [node name="FirePointer" type="Node2D" parent="Player/Gun"]
-position = Vector2( 20.9, 24.7 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Gun"]
 shape = SubResource( 11 )

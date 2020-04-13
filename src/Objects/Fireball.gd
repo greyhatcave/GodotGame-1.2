@@ -8,3 +8,4 @@ func _on_Fireball_body_entered(body):
 		print("Target Hit")
 		body.OnHit(damage)
 	queue_free()
+
