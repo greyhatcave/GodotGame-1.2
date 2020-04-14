@@ -1,4 +1,4 @@
-extends "res://src/Actors/Actor.gd"
+extends Actor
 
 
 var max_hp = 3
@@ -26,3 +26,6 @@ func _physics_process(delta: float) -> void:
 	if is_on_wall():
 		_velocity.x *= -1.0
 	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
+	
+	if _velocity. y > 0:
+		get_node("AnimatedSprite").play("walk")

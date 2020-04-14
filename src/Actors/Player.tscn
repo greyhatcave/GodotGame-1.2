@@ -1,72 +1,181 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://assets/Idle (1).png" type="Texture" id=1]
 [ext_resource path="res://assets/png/health_progress_2.1.png" type="Texture" id=2]
 [ext_resource path="res://assets/png/health_over_2.1.png" type="Texture" id=3]
 [ext_resource path="res://assets/png/health_under_2.1.png" type="Texture" id=4]
+[ext_resource path="res://assets/player_png/Idle (3).png" type="Texture" id=5]
+[ext_resource path="res://assets/player_png/Idle (4).png" type="Texture" id=6]
+[ext_resource path="res://assets/player_png/Idle (1).png" type="Texture" id=7]
+[ext_resource path="res://assets/player_png/Idle (2).png" type="Texture" id=8]
+[ext_resource path="res://assets/player_png/Idle (14).png" type="Texture" id=9]
+[ext_resource path="res://assets/player_png/Idle (13).png" type="Texture" id=10]
+[ext_resource path="res://assets/player_png/Idle (12).png" type="Texture" id=11]
+[ext_resource path="res://assets/player_png/Idle (15).png" type="Texture" id=12]
+[ext_resource path="res://assets/player_png/Idle (11).png" type="Texture" id=13]
+[ext_resource path="res://assets/player_png/Idle (10).png" type="Texture" id=14]
+[ext_resource path="res://assets/player_png/Idle (9).png" type="Texture" id=15]
+[ext_resource path="res://assets/player_png/Idle (6).png" type="Texture" id=16]
+[ext_resource path="res://assets/player_png/Idle (8).png" type="Texture" id=17]
+[ext_resource path="res://assets/player_png/Idle (5).png" type="Texture" id=18]
+[ext_resource path="res://assets/player_png/Idle (7).png" type="Texture" id=19]
+[ext_resource path="res://assets/player_png/Run (6).png" type="Texture" id=20]
+[ext_resource path="res://assets/player_png/Run (9).png" type="Texture" id=21]
+[ext_resource path="res://assets/player_png/Run (15).png" type="Texture" id=22]
+[ext_resource path="res://assets/player_png/Run (8).png" type="Texture" id=23]
+[ext_resource path="res://assets/player_png/Run (10).png" type="Texture" id=24]
+[ext_resource path="res://assets/player_png/Run (1).png" type="Texture" id=25]
+[ext_resource path="res://assets/player_png/Run (5).png" type="Texture" id=26]
+[ext_resource path="res://assets/player_png/Run (13).png" type="Texture" id=27]
+[ext_resource path="res://assets/player_png/Run (11).png" type="Texture" id=28]
+[ext_resource path="res://assets/player_png/Run (7).png" type="Texture" id=29]
+[ext_resource path="res://assets/player_png/Run (14).png" type="Texture" id=30]
+[ext_resource path="res://assets/player_png/Run (4).png" type="Texture" id=31]
+[ext_resource path="res://assets/player_png/Run (12).png" type="Texture" id=32]
+[ext_resource path="res://assets/player_png/Run (2).png" type="Texture" id=33]
+[ext_resource path="res://assets/player_png/Run (3).png" type="Texture" id=34]
+[ext_resource path="res://assets/player_png/Jump (4).png" type="Texture" id=35]
+[ext_resource path="res://assets/player_png/Jump (6).png" type="Texture" id=36]
+[ext_resource path="res://assets/player_png/Jump (7).png" type="Texture" id=37]
+[ext_resource path="res://assets/player_png/Jump (9).png" type="Texture" id=38]
+[ext_resource path="res://assets/player_png/Jump (10).png" type="Texture" id=39]
+[ext_resource path="res://assets/player_png/Jump (11).png" type="Texture" id=40]
+[ext_resource path="res://assets/player_png/Jump (3).png" type="Texture" id=41]
+[ext_resource path="res://assets/player_png/Jump (5).png" type="Texture" id=42]
+[ext_resource path="res://assets/player_png/Jump (2).png" type="Texture" id=43]
+[ext_resource path="res://assets/player_png/Jump (1).png" type="Texture" id=44]
+[ext_resource path="res://assets/player_png/Jump (8).png" type="Texture" id=45]
+[ext_resource path="res://assets/player_png/Jump (12).png" type="Texture" id=46]
+[ext_resource path="res://assets/player_png/Jump (14).png" type="Texture" id=47]
+[ext_resource path="res://assets/player_png/Jump (13).png" type="Texture" id=48]
+[ext_resource path="res://assets/player_png/Jump (15).png" type="Texture" id=49]
+[ext_resource path="res://assets/player_png/Dead (15).png" type="Texture" id=50]
+[ext_resource path="res://assets/player_png/Dead (1).png" type="Texture" id=51]
 
 [sub_resource type="GDScript" id=1]
-script/source = "extends Actor
+script/source = "extends KinematicBody2D
 
+var run_speed = 800
+var jump_speed = -1200
+var gravity = 2500
+
+var velocity = Vector2()
+
+var cursor_image = load(\"res://assets/png/cross_new.png\")
 var max_hp = 100
 var current_hp
 
-var cursor_image = load(\"res://assets/png/cross_new.png\")
+var in_tunnel = false
 
 func _ready() -> void:
+	cursor()
 	current_hp = max_hp
+
+func cursor():
 	Input.set_custom_mouse_cursor(cursor_image,
 			Input.CURSOR_ARROW,
 			Vector2(14, 14))
 
-
-func _physics_process(delta: float) -> void:
-	var is_jump_interrupted: = Input.is_action_just_released(\"jump\") and _velocity.y < 0.0
-	var direction: = get_direction()
-	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
-	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
-		
-	var damaged: = Input.is_action_just_pressed(\"fire\")
+func get_input():
+	velocity.x = 0
+	var right = Input.is_action_pressed(\"move_right\")
+	var left = Input.is_action_pressed('move_left')
+	var jump = Input.is_action_pressed('jump')
+	var crouch = Input.is_action_just_pressed('crouch')
 	
+	if is_on_floor() and jump:
+		velocity.y = jump_speed
+		get_node(\"AnimatedSprite\").play(\"jump\")
+	if right:
+		velocity.x += run_speed
+		$AnimatedSprite.flip_h = false
+		$AnimatedSprite.position.x = 40
+		$tunnel_detector.rotation_degrees = 0
+		$wall_detector.rotation_degrees = 0
+		$tunnel_detector.position.x = 30
+		$wall_detector.position.x = 30
+		if in_tunnel == true:
+			get_node(\"AnimatedSprite\").play(\"crouch\")
+		else:
+			get_node(\"AnimatedSprite\").play(\"run\")
+	elif left:
+		velocity.x -= run_speed
+		$AnimatedSprite.flip_h = true
+		$AnimatedSprite.position.x = -45
+		$tunnel_detector.rotation_degrees = 180
+		$wall_detector.rotation_degrees = 180
+		$tunnel_detector.position.x = -30
+		$wall_detector.position.x = -30
+		if in_tunnel == true:
+			get_node(\"AnimatedSprite\").play(\"crouch\")
+		else:
+			get_node(\"AnimatedSprite\").play(\"run\")
+
+	if velocity.x == 0:
+		if in_tunnel == true:
+			get_node(\"AnimatedSprite\").play(\"crouch\")
+		else:
+			get_node(\"AnimatedSprite\").play(\"idle\")
+		
+	if $wall_detector.is_colliding() and !$tunnel_detector.is_colliding():
+		in_tunnel = true
+		$CollisionShape2D.shape.extents = Vector2(40,70)
+		$CollisionShape2D.position.y = -28
+		$CollisionShape2D.position.x = 50
+	else:
+		in_tunnel = false
+		$CollisionShape2D.shape.extents = Vector2(64,50)
+		$CollisionShape2D.position.y = -49
+		$CollisionShape2D.position.x = 0
+		
+func _physics_process(delta):
+	velocity.y += gravity * delta
+	get_input()
+	velocity = move_and_slide(velocity, Vector2(0, -1))
+	player_damage()
+	print($CollisionShape2D.shape.extents)
+
+func player_damage():
+	var damaged: = Input.is_action_just_pressed(\"fire\")
 	if damaged:
 		current_hp -= 10
 		print(\"PLAYER HIT\")
 		get_node(\"PlayerHealth\").value = int((float(current_hp) / max_hp) * 100)
-		
-
-func get_direction() -> Vector2:
-	return Vector2(
-		Input.get_action_strength(\"move_right\") - Input.get_action_strength(\"move_left\"),
-		-1.0 if Input.is_action_just_pressed(\"jump\") and is_on_floor() else 1.0
-	)
-
-
-func calculate_move_velocity(
-		linear_velocity: Vector2,
-		direction: Vector2,
-		speed: Vector2,
-		is_jump_interrupted: bool
-	) -> Vector2:
-	var out: = linear_velocity
-	out.x = speed.x * direction.x
-	out.y += gravity * get_physics_process_delta_time()
-	if direction.y == -1.0:
-		out.y = speed.y * direction.y 
-	if is_jump_interrupted:
-		out.y = 0.0
-	return out
 "
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 64.0498, 50 )
+extents = Vector2( 64, 50 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 18 ), ExtResource( 16 ), ExtResource( 19 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "idle",
+"speed": 18.0
+}, {
+"frames": [ ExtResource( 44 ), ExtResource( 43 ), ExtResource( 41 ), ExtResource( 35 ), ExtResource( 42 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 45 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 46 ), ExtResource( 48 ), ExtResource( 47 ), ExtResource( 49 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 31 ), ExtResource( 26 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 28 ), ExtResource( 32 ), ExtResource( 27 ), ExtResource( 30 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "run",
+"speed": 18.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 51 ), ExtResource( 50 ) ],
+"loop": false,
+"name": "crouch",
+"speed": 8.0
+} ]
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, -13.2502 )
 collision_mask = 8
 script = SubResource( 1 )
-speed = Vector2( 800, 1400 )
 
 [node name="player" type="Sprite" parent="."]
+visible = false
 position = Vector2( 41.6248, -46.35 )
 scale = Vector2( 0.259854, 0.244327 )
 texture = ExtResource( 1 )
@@ -89,11 +198,17 @@ position = Vector2( 0, -49 )
 rotation = 1.5708
 shape = SubResource( 2 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 40, -46.35 )
+scale = Vector2( 0.26, 0.244 )
+frames = SubResource( 3 )
+animation = "crouch"
+
 [node name="PlayerHealth" type="TextureProgress" parent="."]
-margin_left = -35.0
-margin_top = -120.0
-margin_right = 35.0
-margin_bottom = -112.0
+margin_left = -32.3748
+margin_top = -120.35
+margin_right = 37.6252
+margin_bottom = -112.35
 value = 100.0
 texture_under = ExtResource( 4 )
 texture_over = ExtResource( 3 )
@@ -103,3 +218,15 @@ nine_patch_stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="tunnel_detector" type="RayCast2D" parent="."]
+position = Vector2( 30, 5 )
+enabled = true
+cast_to = Vector2( 60, 0 )
+collision_mask = 8
+
+[node name="wall_detector" type="RayCast2D" parent="."]
+position = Vector2( 30, -120 )
+enabled = true
+cast_to = Vector2( 60, 0 )
+collision_mask = 8
