@@ -2,7 +2,13 @@ extends StateMachine
 
 const STOP_THRESHOLD = 32.0
 
+var cursor_image = load("res://assets/png/cross_new.png")
+
 func _ready():
+	Input.set_custom_mouse_cursor(cursor_image,
+			Input.CURSOR_ARROW,
+			Vector2(14, 14))
+			
 	add_state("idle")
 	add_state("run")
 	add_state("jump")
@@ -83,21 +89,21 @@ func _get_transition(delta):
 func _enter_state(new_state, old_state):
 	match new_state:
 		states.idle:
-			parent.anim_player.play("idle")
+			parent.anim_player.play("idle_new")
 		states.run:
-			parent.anim_player.play("run")
+			parent.anim_player.play("run_new")
 		states.jump:
-			parent.anim_player.play("jump")
+			parent.anim_player.play("jump_new")
 		states.fall:
-			parent.anim_player.play("fall")
+			pass #parent.anim_player.play("fall")
 		states.crouch:
-			parent.anim_player.play("crouch")
+			parent.anim_player.play("crouch_new")
 			if old_state != states.crawl:
 				parent._on_crouch()
 		states.crawl:
-			parent.anim_player.play("crawl")
-			if old_state != states.crouch:
-				parent._on_crouch()
+			pass #parent.anim_player.play("crawl_new")
+			#if old_state != states.crouch:
+				#parent._on_crouch()
 
 func _exit_state(old_state, new_state):
 	match old_state:
