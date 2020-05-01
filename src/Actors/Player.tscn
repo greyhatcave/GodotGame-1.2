@@ -74,7 +74,7 @@ var is_grounded
 
 var max_hp = 100
 
-
+onready var state_machine = $PlayerFSM
 onready var current_hp = max_hp
 onready var raycasts = $Raycasts
 onready var anim_player = $AnimatedSprite
@@ -83,8 +83,7 @@ onready var standing_collision = $CollisionShape2D
 onready var crouching_collision = $CollisionShape2D2
 
 
-
-func _physics_process(delta):
+func _physics_process(_delta):
 	var damage_taken = Input.is_action_just_pressed(\"fire\")
 	if damage_taken:
 		current_hp -= 10
@@ -128,9 +127,13 @@ func _on_crouch():
 	crouching_collision.disabled = false
 
 func _on_stand():
-		if can_stand():
-			standing_collision.disabled = false
-			crouching_collision.disabled = true
+	standing_collision.disabled = false
+	crouching_collision.disabled = true
+	#while standing_collision.disabled && !state_machine.is_crouched():
+	#	if can_stand():
+	#		standing_collision.disabled = false
+	#		crouching_collision.disabled = true
+	#	yield(get_tree(), \"physics_frame\")
 
 func can_stand() -> bool:
 	var space_state = get_world_2d().direct_space_state
@@ -245,6 +248,21 @@ animations = [ {
 "name": "idle",
 "speed": 18.0
 }, {
+"frames": [ ExtResource( 7 ), ExtResource( 51 ), ExtResource( 50 ) ],
+"loop": false,
+"name": "crouch",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 25 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 31 ), ExtResource( 26 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 28 ), ExtResource( 32 ), ExtResource( 27 ), ExtResource( 30 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "run",
+"speed": 18.0
+}, {
+"frames": [ ExtResource( 44 ), ExtResource( 43 ), ExtResource( 41 ), ExtResource( 35 ), ExtResource( 42 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 45 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 46 ), ExtResource( 48 ), ExtResource( 47 ), ExtResource( 49 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 4 ), SubResource( 5 ) ],
 "loop": false,
 "name": "jump_new",
@@ -264,21 +282,6 @@ animations = [ {
 "loop": false,
 "name": "crouch_new",
 "speed": 8.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 51 ), ExtResource( 50 ) ],
-"loop": false,
-"name": "crouch",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 44 ), ExtResource( 43 ), ExtResource( 41 ), ExtResource( 35 ), ExtResource( 42 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 45 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 46 ), ExtResource( 48 ), ExtResource( 47 ), ExtResource( 49 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 25 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 31 ), ExtResource( 26 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 28 ), ExtResource( 32 ), ExtResource( 27 ), ExtResource( 30 ), ExtResource( 22 ) ],
-"loop": true,
-"name": "run",
-"speed": 18.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
@@ -335,18 +338,6 @@ nine_patch_stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="tunnel_detector" type="RayCast2D" parent="."]
-position = Vector2( 30, 5 )
-enabled = true
-cast_to = Vector2( 60, 0 )
-collision_mask = 8
-
-[node name="wall_detector" type="RayCast2D" parent="."]
-position = Vector2( 30, -120 )
-enabled = true
-cast_to = Vector2( 60, 0 )
-collision_mask = 8
 
 [node name="Raycasts" type="Node2D" parent="."]
 

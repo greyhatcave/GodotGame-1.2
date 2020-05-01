@@ -31,7 +31,7 @@ func _state_logic(delta):
 	parent._apply_gravity(delta)
 	parent._apply_movement()
 
-func _get_transition(delta):
+func _get_transition(_delta):
 	match state:
 		states.idle:
 			if !parent.is_grounded:
@@ -64,7 +64,7 @@ func _get_transition(delta):
 			elif parent.velocity.y < 0:
 				return states.jump
 		states.crouch:
-			if !Input.is_action_pressed("crouch") && parent.can_stand():
+			if !Input.is_action_pressed("crouch"): #&& parent.can_stand():
 				return states.idle
 			elif !parent.is_grounded:
 				if parent.velocity.y < 0:
@@ -74,7 +74,7 @@ func _get_transition(delta):
 			elif abs(parent.velocity.x) >= STOP_THRESHOLD:
 				return states.crawl
 		states.crawl:
-			if !Input.is_action_pressed("crouch") && parent.can_stand():
+			if !Input.is_action_pressed("crouch"): #&& parent.can_stand():
 				return states.run
 			elif !parent.is_grounded:
 				if parent.velocity.y < 0:
@@ -86,7 +86,7 @@ func _get_transition(delta):
 				
 	return null
 
-func _enter_state(new_state, old_state):
+func _enter_state(new_state, _old_state):
 	match new_state:
 		states.idle:
 			parent.anim_player.play("idle_new")
@@ -98,7 +98,7 @@ func _enter_state(new_state, old_state):
 			pass #parent.anim_player.play("fall")
 		states.crouch:
 			parent.anim_player.play("crouch_new")
-			if old_state != states.crawl:
+			if _old_state != states.crawl:
 				parent._on_crouch()
 		states.crawl:
 			pass #parent.anim_player.play("crawl_new")
@@ -113,3 +113,6 @@ func _exit_state(old_state, new_state):
 		states.crawl:
 			if new_state != states.crouch:
 				parent._on_stand()
+
+func is_crouched():
+	return [states.crouch, states.crawl].has(state)

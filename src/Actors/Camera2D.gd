@@ -6,7 +6,7 @@ var facing = 0
 
 onready var prev_camera_pos = get_camera_position()
 
-func _process(delta):
+func _process(_delta):
 	_check_facing()
 	prev_camera_pos = get_camera_position()
 
