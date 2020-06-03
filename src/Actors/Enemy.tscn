@@ -63,68 +63,68 @@ region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 24 )
+atlas = ExtResource( 26 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 24 )
+atlas = ExtResource( 26 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 24 )
+atlas = ExtResource( 26 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 24 )
+atlas = ExtResource( 26 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 24 )
+atlas = ExtResource( 26 )
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
 atlas = ExtResource( 26 )
-region = Rect2( 0, 0, 48, 48 )
+region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
 atlas = ExtResource( 26 )
-region = Rect2( 48, 0, 48, 48 )
+region = Rect2( 288, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
 atlas = ExtResource( 26 )
-region = Rect2( 96, 0, 48, 48 )
+region = Rect2( 336, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 144, 0, 48, 48 )
+atlas = ExtResource( 24 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 192, 0, 48, 48 )
+atlas = ExtResource( 24 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 240, 0, 48, 48 )
+atlas = ExtResource( 24 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 288, 0, 48, 48 )
+atlas = ExtResource( 24 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 336, 0, 48, 48 )
+atlas = ExtResource( 24 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="SpriteFrames" id=21]
 animations = [ {
@@ -133,19 +133,19 @@ animations = [ {
 "name": "enemy_run",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
-"loop": true,
-"name": "enemy_idle",
-"speed": 8.0
-}, {
 "frames": [ ExtResource( 15 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "walk",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
 "loop": false,
 "name": "enemy_dead",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "enemy_idle",
 "speed": 8.0
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 19 ) ],
@@ -204,6 +204,7 @@ frames = SubResource( 21 )
 animation = "enemy_run"
 
 [node name="Sight" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sight"]
 modulate = Color( 0.898039, 1, 0, 1 )
@@ -211,6 +212,7 @@ shape = SubResource( 22 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
+autostart = true
 
 [node name="Enemy_Gun" type="KinematicBody2D" parent="."]
 
@@ -219,4 +221,3 @@ position = Vector2( 31.4996, -55.3925 )
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="Sight" to="." method="_on_Sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_Sight_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

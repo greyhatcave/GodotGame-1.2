@@ -20,7 +20,8 @@ func _get_transition(_delta):
 		
 	if state == states.attack:
 		if parent.can_fire == true:
-			parent.shoot(_delta)
+			#parent.shoot(_delta)
+			parent.fire()
 func _enter_state(new_state, old_state):
 	match new_state:
 		states.idle:

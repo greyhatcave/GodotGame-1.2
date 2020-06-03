@@ -4,9 +4,7 @@ extends Actor
 const FLOOR_NORMAL: = Vector2.UP
 
 var can_fire = true
-var fire_speed = 120
 
-var fire_direction
 var player_position
 
 onready var anim_player = $AnimatedSprite
@@ -27,6 +25,9 @@ var current_hp
 onready var parent = get_parent()
 var fireball = preload("res://src/Objects/EnemyBullet.tscn")
 export var fireball_speed = 3000
+
+
+onready var BULLET_SCENE = preload("res://src/Objects/EnemyBullet.tscn")
 
 
 func _ready() -> void:
@@ -58,35 +59,15 @@ func OnHit(damage):
 		$HealthBar.hide()
 
 
-
-#func Attack():
-#	can_fire = false
-#	fire_speed = 0
-#	fire_direction = (get_angle_to(player_position)/3.14)*180   <----
-#	var skill = load("res://src/Objects/Fireball.tscn")
-#	var skill_instance = skill.instance()
-#	skill_instance.fire_direction = fire_direction
-#	skill_instance.rotation = get_angle_to(player_position)
-#	skill_instance.origin = "enemies"
-#	get_parent().add_child(skill_instance)
-#	yield(get_tree().create_timer(0.6), "timeout")
-#	can_fire = true
-#	fire_speed = 120
-
-#Testing shoot function
-func shoot(_delta):
+func fire():
 	if player_in_sight:
 		can_fire = false
-		var fireball_instance = fireball.instance()
-		fireball_instance.position = $Enemy_Gun/Gun_FirePointer.get_global_position()
-		fireball_instance.rotation_degrees = rotation_degrees
-		fireball_instance.apply_impulse(Vector2(), Vector2(fireball_speed, 0).rotated(rotation))
-		get_tree().get_root().add_child(fireball_instance)
+		var bullet = BULLET_SCENE.instance()
+		bullet.position = $Enemy_Gun/Gun_FirePointer.get_global_position()
+		bullet.player = player
+		get_tree().get_root().add_child(bullet)
 		yield(get_tree().create_timer(0.6), "timeout")
 		can_fire = true
-
-
-
 
 func _physics_process(delta):
 	SightCheck()
