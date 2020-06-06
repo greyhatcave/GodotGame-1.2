@@ -33,6 +33,8 @@ onready var BULLET_SCENE = preload("res://src/Objects/EnemyBullet.tscn")
 func _ready() -> void:
 	_velocity.x = -speed.x
 	current_hp = max_hp
+	$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.chase)
+	
 
 func _apply_gravity(delta):
 	_velocity.y += gravity * delta
@@ -95,8 +97,7 @@ func SightCheck():
 			if sight_check.collider.name == "Player":
 				player_in_sight = true
 				player_position = player.get_global_position()
-				
 				$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.attack)
 			else:
 				player_in_sight = false
-				$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.idle)
+				$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.chase)

@@ -19,16 +19,16 @@ func _get_transition(_delta):
 		parent._walk()
 		
 	if state == states.attack:
-		if parent.can_fire == true:
-			#parent.shoot(_delta)
+		if parent.player_in_sight and parent.can_fire == true:
 			parent.fire()
+		else:
+			return states.chase
 func _enter_state(new_state, old_state):
 	match new_state:
 		states.idle:
-			print("ZzzzZzz")
 			parent.anim_player.play("enemy_idle")
 		states.attack:
-			print("PewPewPew")
+			pass
 		states.chase:
 			parent.anim_player.play("enemy_run")
 		states.dead:
