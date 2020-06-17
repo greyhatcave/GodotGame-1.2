@@ -21,7 +21,7 @@ func _input(event):
 	if event.is_action_pressed("jump"):
 		if [states.idle, states.run].has(state) \
 				|| ([states.crouch, states.crawl].has(state) && parent.can_stand()):
-			parent.velocity.y = parent.jump_velocity
+					parent.velocity.y = parent.jump_velocity
 			
 func _state_logic(delta):
 	if [states.idle, states.run, states.jump, states.fall].has(state):

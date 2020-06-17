@@ -12,7 +12,7 @@ onready var anim_player = $AnimatedSprite
 onready var player = get_parent().get_node("Player")
 onready var enemy = get_parent().get_node("Enemy")
 
-export var speed: = Vector2(300.0, 1000.0)
+export var speed: = Vector2(200.0, 1000.0)
 export var gravity: = 3000.0
 
 var player_in_range
@@ -49,6 +49,7 @@ func _walk():
 	elif _velocity.x > 0:
 		$AnimatedSprite.flip_h = false
 
+
 func _idle():
 	pass
 
@@ -62,13 +63,13 @@ func OnHit(damage):
 
 
 func fire():
-	if player_in_sight:
+	if player_in_sight && current_hp > 0:
 		can_fire = false
 		var bullet = BULLET_SCENE.instance()
 		bullet.position = $Enemy_Gun/Gun_FirePointer.get_global_position()
 		bullet.player = player
 		get_tree().get_root().add_child(bullet)
-		yield(get_tree().create_timer(0.6), "timeout")
+		yield(get_tree().create_timer(0.5), "timeout")
 		can_fire = true
 
 func _physics_process(delta):

@@ -19,10 +19,17 @@ func _get_transition(_delta):
 		parent._walk()
 		
 	if state == states.attack:
+		parent._walk()
 		if parent.player_in_sight and parent.can_fire == true:
 			parent.fire()
+		if parent.current_hp <= 0:
+			return states.dead
 		else:
 			return states.chase
+			
+	if state == states.dead:
+		pass
+		
 func _enter_state(new_state, old_state):
 	match new_state:
 		states.idle:

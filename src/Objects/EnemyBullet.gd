@@ -4,8 +4,8 @@ extends Area2D
 var move = Vector2.ZERO
 var look_vec = Vector2.ZERO
 var player = null
-var speed = 7
-var damage = 10
+var speed = 9
+var damage = 5
 
 
 

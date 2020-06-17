@@ -1,157 +1,129 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://assets/png/health_under_2.1.png" type="Texture" id=3]
 [ext_resource path="res://assets/png/health_progress_2.1.png" type="Texture" id=4]
 [ext_resource path="res://assets/png/health_over_2.1.png" type="Texture" id=5]
-[ext_resource path="res://assets/png/Walk (4).png" type="Texture" id=6]
-[ext_resource path="res://assets/png/Walk (9).png" type="Texture" id=7]
-[ext_resource path="res://assets/png/Walk (6).png" type="Texture" id=8]
-[ext_resource path="res://assets/png/Walk (8).png" type="Texture" id=9]
-[ext_resource path="res://assets/png/Walk (5).png" type="Texture" id=10]
-[ext_resource path="res://assets/png/Walk (3).png" type="Texture" id=11]
-[ext_resource path="res://assets/png/Walk (10).png" type="Texture" id=12]
-[ext_resource path="res://assets/png/Walk (2).png" type="Texture" id=13]
-[ext_resource path="res://assets/png/Walk (7).png" type="Texture" id=14]
-[ext_resource path="res://assets/png/Walk (1).png" type="Texture" id=15]
-[ext_resource path="res://assets/png/Dead (1).png" type="Texture" id=16]
-[ext_resource path="res://assets/png/Dead (2).png" type="Texture" id=17]
-[ext_resource path="res://assets/png/Dead (4).png" type="Texture" id=18]
-[ext_resource path="res://assets/png/Dead (8).png" type="Texture" id=19]
-[ext_resource path="res://assets/png/Dead (3).png" type="Texture" id=20]
-[ext_resource path="res://assets/png/Dead (6).png" type="Texture" id=21]
-[ext_resource path="res://assets/png/Dead (5).png" type="Texture" id=22]
-[ext_resource path="res://assets/png/Dead (7).png" type="Texture" id=23]
 [ext_resource path="res://assets/new_enemy/Gunner_Red_Idle.png" type="Texture" id=24]
 [ext_resource path="res://assets/new_enemy/Gunner_Red_Run.png" type="Texture" id=25]
 [ext_resource path="res://assets/new_enemy/Gunner_Red_Death.png" type="Texture" id=26]
 [ext_resource path="res://src/Actors/EnemyFSM.gd" type="Script" id=27]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 46.1473, 58.1258 )
+extents = Vector2( 46.1473, 57.8821 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 26 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 26 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 26 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 26 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 26 )
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 26 )
 region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 96, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=11]
-flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 144, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=12]
-flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 192, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=13]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=15]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 96, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=16]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 144, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=17]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 192, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=18]
-flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 240, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=19]
-flags = 4
 atlas = ExtResource( 26 )
 region = Rect2( 288, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 26 )
 region = Rect2( 336, 0, 48, 48 )
 
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 24 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 24 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 24 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 24 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 24 )
+region = Rect2( 192, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 25 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 25 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 25 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 25 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 25 )
+region = Rect2( 192, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 25 )
+region = Rect2( 240, 0, 48, 48 )
+
 [sub_resource type="SpriteFrames" id=21]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
-"loop": true,
-"name": "enemy_run",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "walk",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
-"loop": true,
-"name": "enemy_idle",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": false,
 "name": "enemy_dead",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 19 ) ],
-"loop": false,
-"name": "dead",
-"speed": 5.0
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "enemy_idle",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "enemy_run",
+"speed": 8.0
 } ]
 
 [sub_resource type="CircleShape2D" id=22]
@@ -161,6 +133,7 @@ radius = 300.0
 "Enemies",
 ]]
 collision_layer = 2
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="StateMachine" type="Node2D" parent="."]
@@ -214,6 +187,8 @@ wait_time = 2.0
 autostart = true
 
 [node name="Enemy_Gun" type="KinematicBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
 
 [node name="Gun_FirePointer" type="Node2D" parent="Enemy_Gun"]
 position = Vector2( 31.4996, -55.3925 )
