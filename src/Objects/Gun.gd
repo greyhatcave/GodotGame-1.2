@@ -3,7 +3,7 @@ extends KinematicBody2D
 onready var parent = get_parent()
 var fireball = preload("res://src/Objects/Fireball.tscn")
 
-export var fireball_speed = 4000
+export var fireball_speed = 1500
 
 
 func _process(_delta):
@@ -13,7 +13,7 @@ func _process(_delta):
 		
 # Call shoot in player.tscn::1 with 'child'
 func shoot(_delta):
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_just_pressed("fire") && parent.player_alive:
 		var fireball_instance = fireball.instance()
 		fireball_instance.position = $FirePointer.get_global_position()
 		fireball_instance.rotation_degrees = rotation_degrees

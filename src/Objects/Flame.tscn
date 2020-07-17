@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/png/firethrower.png" type="Texture" id=1]
+[ext_resource path="res://src/Objects/Flame.gd" type="Script" id=2]
+
+[sub_resource type="ConcavePolygonShape2D" id=1]
+segments = PoolVector2Array( 60, 15, 0, 0, 60, -15, 0, 0, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.175676, 0.324324, 0.47973, 0.608108, 0.77027, 0.878378, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 0.964844, 0.900065, 0.776398, 1, 0.96875, 0.797398, 0.730347, 1, 1, 0.539063, 0, 1, 0.960938, 0.127625, 0.127625, 1, 0.494118, 0.109804, 0.109804, 0.960784, 0.141176, 0.129412, 0.129412, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+lifetime_randomness = 0.14
+flag_disable_z = true
+spread = 30.0
+gravity = Vector3( 1, 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -90.0
+scale = 0.1
+scale_random = 0.1
+color_ramp = SubResource( 3 )
+
+[node name="Flame" type="Area2D"]
+collision_layer = 10
+collision_mask = 11
+script = ExtResource( 2 )
+
+[node name="Flame_Collision" type="CollisionShape2D" parent="."]
+scale = Vector2( 8.5, 3.5 )
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="Flame_Collision"]
+show_behind_parent = true
+scale = Vector2( 0.411765, 0.228571 )
+amount = 1400
+lifetime = 0.3
+speed_scale = 0.6
+local_coords = false
+draw_order = 1
+process_material = SubResource( 4 )
+texture = ExtResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_Flame_body_entered"]

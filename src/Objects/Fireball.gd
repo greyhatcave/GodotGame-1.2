@@ -10,3 +10,9 @@ func _on_Fireball_body_entered(body):
 		body.OnHit(damage)
 	queue_free()
 
+
+
+func _on_Fireball_Animation_frame_changed():
+	if $Fireball_Animation.frame == 2:
+		print("FRAME 2")
+		$Fireball_Animation.stop()

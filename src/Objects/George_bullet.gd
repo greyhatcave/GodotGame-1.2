@@ -4,11 +4,15 @@ extends Area2D
 var move = Vector2.ZERO
 var look_vec = Vector2.ZERO
 var player = null
-var speed = 9
+var speed = 8
 var damage = 5
 
+#var mouse_pos
+
 onready var parent = get_parent()
-#onready var anim_player = $AnimatedSprite
+
+
+var fireball = preload("res://src/Objects/Flame.tscn")
 
 
 func _ready():
@@ -22,17 +26,20 @@ func _ready():
 		#if look_vec.x > 0:
 		#	$AnimatedSprite.flip_h = false
 		
+
+#func _process(delta):
+#	mouse_pos = get_global_mouse_position()
+#	rotation += mouse_pos.angle()
 	
 func _physics_process(delta):
 	move = move.move_toward(look_vec, delta)
 	move = move.normalized() * speed
 	position += move
 
-
 func _on_Fireball_body_entered(body):
 	if body.is_in_group("Player"):
 		body.PlayerOnHit(damage)
-		queue_free()
+		#queue_free()
 
 
 

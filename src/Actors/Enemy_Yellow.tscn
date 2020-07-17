@@ -1,13 +1,15 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://src/Actors/George.gd" type="Script" id=2]
 [ext_resource path="res://assets/png/health_under_2.1.png" type="Texture" id=3]
 [ext_resource path="res://assets/png/health_progress_2.1.png" type="Texture" id=4]
 [ext_resource path="res://assets/png/health_over_2.1.png" type="Texture" id=5]
-[ext_resource path="res://assets/new_enemy/Gunner_Red_Idle.png" type="Texture" id=24]
-[ext_resource path="res://assets/new_enemy/Gunner_Red_Run.png" type="Texture" id=25]
-[ext_resource path="res://assets/new_enemy/Gunner_Red_Death.png" type="Texture" id=26]
+[ext_resource path="res://assets/new_enemy/Yellow/Gunner_Yellow_Idle.png" type="Texture" id=6]
+[ext_resource path="res://assets/new_enemy/Yellow/Gunner_Yellow_Run.png" type="Texture" id=7]
+[ext_resource path="res://assets/new_enemy/Yellow/Gunner_Yellow_Death.png" type="Texture" id=8]
+[ext_resource path="res://src/Objects/Flame.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/UI/64.png" type="Texture" id=11]
 [ext_resource path="res://src/Actors/EnemyFSM.gd" type="Script" id=27]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -15,121 +17,121 @@ extents = Vector2( 46.1473, 57.8821 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 6 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 6 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 6 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 6 )
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = ExtResource( 25 )
-region = Rect2( 240, 0, 48, 48 )
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 0, 0, 48, 48 )
+atlas = ExtResource( 8 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 48, 0, 48, 48 )
+atlas = ExtResource( 8 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 96, 0, 48, 48 )
+atlas = ExtResource( 8 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 144, 0, 48, 48 )
+atlas = ExtResource( 8 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 192, 0, 48, 48 )
+atlas = ExtResource( 8 )
+region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 0, 0, 48, 48 )
+atlas = ExtResource( 8 )
+region = Rect2( 288, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 48, 0, 48, 48 )
+atlas = ExtResource( 8 )
+region = Rect2( 336, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 96, 0, 48, 48 )
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 144, 0, 48, 48 )
+atlas = ExtResource( 7 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 192, 0, 48, 48 )
+atlas = ExtResource( 7 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 240, 0, 48, 48 )
+atlas = ExtResource( 7 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 288, 0, 48, 48 )
+atlas = ExtResource( 7 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 26 )
-region = Rect2( 336, 0, 48, 48 )
+atlas = ExtResource( 7 )
+region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="SpriteFrames" id=21]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
-"name": "enemy_run",
+"name": "george_idle",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
-"loop": true,
-"name": "enemy_idle",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": false,
-"name": "enemy_dead",
+"name": "george_dead",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "george_chase",
 "speed": 8.0
 } ]
 
 [sub_resource type="CircleShape2D" id=22]
 radius = 300.0
 
-[node name="Enemy" type="KinematicBody2D" groups=[
+[node name="George" type="KinematicBody2D" groups=[
 "Enemies",
 ]]
 collision_layer = 2
@@ -143,11 +145,11 @@ script = ExtResource( 1 )
 script = ExtResource( 27 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -11.1734, -13.3468 )
+position = Vector2( -11.1734, -57.3468 )
 shape = SubResource( 1 )
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
-position = Vector2( -10.1259, 25.9216 )
+position = Vector2( -10.1259, -20.0784 )
 scale = Vector2( 0.811448, 1.90784 )
 rect = Rect2( -50, -50, 100, 60 )
 process_parent = true
@@ -155,9 +157,9 @@ physics_process_parent = true
 
 [node name="HealthBar" type="TextureProgress" parent="."]
 margin_left = -36.0267
-margin_top = -93.061
+margin_top = -126.061
 margin_right = 33.9733
-margin_bottom = -85.061
+margin_bottom = -118.061
 value = 100.0
 texture_under = ExtResource( 3 )
 texture_over = ExtResource( 5 )
@@ -170,19 +172,22 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -9, -45 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 21 )
-animation = "enemy_run"
+animation = "george_idle"
 
 [node name="Sight" type="Area2D" parent="."]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sight"]
 visible = false
 modulate = Color( 0.898039, 1, 0, 1 )
+scale = Vector2( 1.7, 1.7 )
 shape = SubResource( 22 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.013
 autostart = true
 
 [node name="Enemy_Gun" type="KinematicBody2D" parent="."]
@@ -190,7 +195,18 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="Gun_FirePointer" type="Node2D" parent="Enemy_Gun"]
-position = Vector2( 31.4996, -10.3925 )
+position = Vector2( 31.4996, -55.3925 )
+
+[node name="Weapon" type="Node2D" parent="."]
+position = Vector2( 22, -55 )
+
+[node name="Flame_Pointer" type="Sprite" parent="Weapon"]
+visible = false
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 11 )
+
+[node name="Flame" parent="Weapon" instance=ExtResource( 10 )]
+visible = false
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="Sight" to="." method="_on_Sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_Sight_body_exited"]
