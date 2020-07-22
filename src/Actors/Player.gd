@@ -1,6 +1,7 @@
 extends Actor
 
 
+
 func _physics_process(delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	var direction: = get_direction()
@@ -8,6 +9,7 @@ func _physics_process(delta: float) -> void:
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
 	
 	
+
 	
 func get_direction() -> Vector2:
 	return Vector2(
