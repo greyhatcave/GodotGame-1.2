@@ -50,6 +50,7 @@ func _walk():
 
 func _idle():
 	pass
+	###
 
 func OnHit(damage):
 	print("Enemy Hit")
