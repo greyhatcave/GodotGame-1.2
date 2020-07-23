@@ -127,7 +127,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=22]
-radius = 300.0
+radius = 430.0
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "Enemies",

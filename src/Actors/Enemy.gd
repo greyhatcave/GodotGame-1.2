@@ -102,3 +102,5 @@ func SightCheck():
 			else:
 				player_in_sight = false
 				$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.chase)
+	else:
+		$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.chase)
