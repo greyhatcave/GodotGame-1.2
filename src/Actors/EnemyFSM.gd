@@ -28,13 +28,13 @@ func _get_transition(_delta):
 		parent._walk()
 		
 	if state == states.attack:
-		parent._walk()
-		if parent.player_in_sight and parent.can_fire == true:
+		if parent.can_fire == true:
 			parent.fire()
 		if parent.current_hp <= 0:
 			return states.dead
 		else:
-			return states.chase
+			return states.idle
+
 	if state == states.george_attack:
 		parent._walk()
 		parent.fire()
@@ -43,8 +43,8 @@ func _get_transition(_delta):
 		else:
 			return states.george_chase
 			
-	if state == states.dead || states.george_dead:
-		pass
+	if state == states.dead:
+		$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.dead)
 		
 func _enter_state(_new_state, _old_state):
 	match _new_state:
@@ -55,7 +55,7 @@ func _enter_state(_new_state, _old_state):
 		states.attack:
 			pass
 		states.george_attack:
-			pass
+			parent.anim_player.play("idle")
 		states.chase:
 			parent.anim_player.play("enemy_run")
 		states.george_chase:
