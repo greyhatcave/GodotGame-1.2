@@ -1,5 +1,5 @@
 extends Actor
-#TEST
+
 
 const FLOOR_NORMAL: = Vector2.UP
 
@@ -26,6 +26,7 @@ onready var parent = get_parent()
 
 onready var standing_collision = $CollisionShape2D
 onready var BULLET_SCENE = preload("res://src/Objects/EnemyBullet.tscn")
+onready var VIRUS_ID = preload("res://src/Objects/VirusID.tscn")
 
 
 func _ready() -> void:
@@ -53,7 +54,6 @@ func _idle():
 	###
 
 func OnHit(damage):
-	print("Enemy Hit")
 	current_hp -= damage
 	get_node("HealthBar").value = int((float(current_hp) / max_hp) * 100)
 	if current_hp <= 0:
@@ -78,6 +78,9 @@ func _physics_process(_delta):
 
 func _on_AnimatedSprite_animation_finished():
 	if current_hp <= 0:
+		var virus = VIRUS_ID.instance()
+		virus.position = $Enemy_Gun.get_global_position()
+		get_tree().get_root().add_child(virus)
 		queue_free()
 
 
