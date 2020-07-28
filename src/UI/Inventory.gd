@@ -8,14 +8,11 @@ func _ready():
 	for _i in range(MaxInvSpace):
 		var NewInvItem = EmptyInvItem.duplicate()
 		$ScrollContainer/GridContainer.add_child(NewInvItem)
-		
-		
 
 func _input(_event):
-	var open_inv = Input.is_action_just_pressed("inventory")
-	var close_inv = Input.is_action_just_released("inventory")
-	
-	if open_inv:
-		show()
-	elif close_inv:
-		hide()
+	if not visible:
+		if Input.is_action_just_pressed("inventory"):
+			show()
+	elif visible:
+		if Input.is_action_just_pressed("inventory"):
+			hide()
