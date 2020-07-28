@@ -73,6 +73,7 @@ func fire():
 		can_fire = true
 
 func _physics_process(_delta):
+	flip_sprite_to_player()
 	SightCheck()
 	
 
@@ -82,6 +83,13 @@ func _on_AnimatedSprite_animation_finished():
 		virus.position = $Enemy_Gun.get_global_position()
 		get_tree().get_root().add_child(virus)
 		queue_free()
+
+#Test!!
+func flip_sprite_to_player():
+	if player.position < position:
+		$AnimatedSprite.flip_h = true
+	if player.position > position:
+		$AnimatedSprite.flip_h = false
 
 
 func _on_Sight_body_entered(body):
