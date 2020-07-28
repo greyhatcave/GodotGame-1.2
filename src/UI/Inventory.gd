@@ -12,8 +12,8 @@ func _ready():
 		
 
 func _input(_event):
-	var open_inv = Input.is_action_just_pressed("crouch")
-	var close_inv = Input.is_action_just_released("crouch")
+	var open_inv = Input.is_action_just_pressed("inventory")
+	var close_inv = Input.is_action_just_released("inventory")
 	
 	if open_inv:
 		show()
