@@ -24,7 +24,7 @@ const SLOPE_STOP = 64
 const CRAWL_SPEED = 3 * 140
 
 var velocity = Vector2()
-var move_speed = 4 * 120
+var move_speed = 4 * 125
 var gravity = 1750
 var jump_velocity = -1000
 var is_grounded
@@ -218,38 +218,38 @@ region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
-atlas = ExtResource( 52 )
+atlas = ExtResource( 54 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 52 )
+atlas = ExtResource( 54 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
 atlas = ExtResource( 52 )
-region = Rect2( 96, 0, 48, 48 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 52 )
-region = Rect2( 144, 0, 48, 48 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
 atlas = ExtResource( 52 )
-region = Rect2( 192, 0, 48, 48 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 54 )
-region = Rect2( 0, 0, 48, 48 )
+atlas = ExtResource( 52 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
-atlas = ExtResource( 54 )
-region = Rect2( 48, 0, 48, 48 )
+atlas = ExtResource( 52 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
@@ -293,14 +293,14 @@ animations = [ {
 "name": "crouch_new",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
-"loop": true,
-"name": "idle_new",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 20 ), SubResource( 21 ) ],
+"frames": [ SubResource( 15 ), SubResource( 16 ) ],
 "loop": false,
 "name": "jump_new",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": true,
+"name": "idle_new",
 "speed": 8.0
 }, {
 "frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
