@@ -74,7 +74,7 @@ shape = SubResource( 1 )
 disabled = true
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1906.79, 724.051 )
+position = Vector2( 1927.34, 724.051 )
 
 [node name="Enemy2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 2126.43, 725.137 )
