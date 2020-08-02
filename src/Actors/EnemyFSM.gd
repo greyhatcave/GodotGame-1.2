@@ -55,7 +55,7 @@ func _enter_state(_new_state, _old_state):
 		states.attack:
 			pass
 		states.george_attack:
-			parent.anim_player.play("idle")
+			parent.anim_player.play("george_idle")
 		states.chase:
 			parent.anim_player.play("enemy_run")
 		states.george_chase:
