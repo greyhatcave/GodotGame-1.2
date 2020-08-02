@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Objects/TileMap.tscn" type="PackedScene" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://src/Objects/Gun.gd" type="Script" id=6]
 [ext_resource path="res://src/StateMachine/PlayerFSM.gd" type="Script" id=7]
 [ext_resource path="res://StateMachine.gd" type="Script" id=8]
+[ext_resource path="res://assets/png/Bone (1).png" type="Texture" id=9]
+[ext_resource path="res://assets/png/Bone (3).png" type="Texture" id=10]
+[ext_resource path="res://assets/png/Bone (4).png" type="Texture" id=11]
 [ext_resource path="res://src/UI/UI.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/Actors/Enemy_Yellow.tscn" type="PackedScene" id=27]
 
@@ -86,3 +89,28 @@ position = Vector2( 3717.83, 485.692 )
 
 [node name="Enemy4" parent="." instance=ExtResource( 27 )]
 position = Vector2( 3608.14, 764.038 )
+
+[node name="Bone" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Bone"]
+modulate = Color( 1, 1, 1, 0.396078 )
+position = Vector2( 1171.31, 636.008 )
+rotation = 0.404916
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 11 )
+
+[node name="Bone2" type="Node2D" parent="."]
+position = Vector2( 73, 0 )
+
+[node name="Sprite" type="Sprite" parent="Bone2"]
+modulate = Color( 1, 1, 1, 0.396078 )
+position = Vector2( 2334.67, 490.256 )
+rotation = 0.308923
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 9 )
+
+[node name="Sprite2" type="Sprite" parent="Bone2"]
+modulate = Color( 1, 1, 1, 0.396078 )
+position = Vector2( 2385.37, 648.441 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 10 )
