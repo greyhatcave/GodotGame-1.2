@@ -23,5 +23,5 @@ func _check_facing():
 		tween.interpolate_property(self, "position:x", position.x, target_offset, SHIFT_DURATION, SHIFT_TRANS, SHIFT_EASE)
 		tween.start()
 
-func _on_Player_grounded_updated(is_grounded):
-	drag_margin_v_enabled = !is_grounded
+#func _on_Player_grounded_updated(is_grounded):
+	#drag_margin_v_enabled = !is_grounded
