@@ -17,7 +17,7 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends KinematicBody2D
 
-signal grounded_updated(is_grounded)
+#signal grounded_updated(is_grounded)
 
 const UP = Vector2(0, -1)
 const SLOPE_STOP = 64
@@ -53,7 +53,8 @@ func _physics_process(_delta):
 	is_grounded = is_on_floor()
 	
 	if was_grounded == null || is_grounded != was_grounded:
-		emit_signal(\"grounded_updated\", is_grounded)
+		pass
+		#emit_signal(\"grounded_updated\", is_grounded)
 
 func _apply_gravity(delta):
 	# Apply Gravity
@@ -243,43 +244,43 @@ region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 55 )
+atlas = ExtResource( 52 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
-atlas = ExtResource( 55 )
+atlas = ExtResource( 52 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
-atlas = ExtResource( 55 )
+atlas = ExtResource( 52 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
 atlas = ExtResource( 52 )
-region = Rect2( 0, 0, 48, 48 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
 atlas = ExtResource( 52 )
-region = Rect2( 48, 0, 48, 48 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 96, 0, 48, 48 )
+atlas = ExtResource( 55 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 144, 0, 48, 48 )
+atlas = ExtResource( 55 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 192, 0, 48, 48 )
+atlas = ExtResource( 55 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="SpriteFrames" id=28]
 animations = [ {
@@ -298,14 +299,14 @@ animations = [ {
 "name": "run_new",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
-"loop": false,
-"name": "crouch_new",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
 "loop": true,
 "name": "idle_new",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
+"loop": false,
+"name": "crouch_new",
 "speed": 8.0
 } ]
 
@@ -319,15 +320,20 @@ collision_mask = 8
 script = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 0, -168 )
+position = Vector2( 0, -508 )
 current = true
 limit_left = 0
+limit_top = 0
+limit_bottom = 2100
+limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
 smoothing_speed = 3.0
 drag_margin_left = 0.01
+drag_margin_top = 1.0
 drag_margin_right = 0.01
+drag_margin_bottom = 0.5
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource( 56 )
@@ -410,4 +416,3 @@ position = Vector2( 0, -165 )
 shape = SubResource( 29 )
 
 [node name="VirusID_Score" parent="." instance=ExtResource( 8 )]
-[connection signal="grounded_updated" from="." to="Camera2D" method="_on_Player_grounded_updated"]
