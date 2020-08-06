@@ -94,56 +94,6 @@ position = Vector2( 3717.83, 485.692 )
 [node name="Enemy4" parent="." instance=ExtResource( 27 )]
 position = Vector2( 3608.14, 764.038 )
 
-[node name="Bone" type="Node2D" parent="."]
-z_index = 1
-
-[node name="Sprite" type="Sprite" parent="Bone"]
-modulate = Color( 1, 1, 1, 0.396078 )
-self_modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
-position = Vector2( 1171.31, 636.008 )
-rotation = 0.404916
-scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 11 )
-
-[node name="Bone2" type="Node2D" parent="."]
-position = Vector2( 73, 0 )
-z_index = 1
-
-[node name="Sprite" type="Sprite" parent="Bone2"]
-modulate = Color( 1, 1, 1, 0.396078 )
-self_modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
-position = Vector2( 2334.67, 490.256 )
-rotation = 0.308923
-scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 9 )
-
-[node name="Sprite2" type="Sprite" parent="Bone2"]
-modulate = Color( 1, 1, 1, 0.396078 )
-self_modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
-position = Vector2( 2385.37, 648.441 )
-scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 10 )
-
-[node name="Bone3" type="Node2D" parent="."]
-position = Vector2( 180.367, 982.57 )
-z_index = 1
-
-[node name="Sprite" type="Sprite" parent="Bone3"]
-modulate = Color( 1, 1, 1, 0.396078 )
-self_modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
-position = Vector2( 382.544, -134.424 )
-rotation = -0.326377
-scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 9 )
-
-[node name="Sprite2" type="Sprite" parent="Bone3"]
-modulate = Color( 1, 1, 1, 0.396078 )
-self_modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
-position = Vector2( 2492.77, 20.507 )
-rotation = 1.14319
-scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 10 )
-
 [node name="Bones" type="Node2D" parent="."]
 z_index = 1
 
@@ -174,3 +124,42 @@ texture = ExtResource( 10 )
 self_modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
 position = Vector2( 2532.73, 1079.54 )
 texture = ExtResource( 12 )
+
+[node name="Sprite6" type="Sprite" parent="Bones"]
+modulate = Color( 1, 1, 1, 0.396078 )
+self_modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
+position = Vector2( 2673.14, 1003.08 )
+rotation = 1.14319
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 10 )
+
+[node name="Sprite7" type="Sprite" parent="Bones"]
+modulate = Color( 1, 1, 1, 0.396078 )
+self_modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
+position = Vector2( 562.911, 848.146 )
+rotation = -0.326377
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 9 )
+
+[node name="Sprite8" type="Sprite" parent="Bones"]
+modulate = Color( 1, 1, 1, 0.396078 )
+self_modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
+position = Vector2( 2458.37, 648.441 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 10 )
+
+[node name="Sprite9" type="Sprite" parent="Bones"]
+modulate = Color( 1, 1, 1, 0.396078 )
+self_modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
+position = Vector2( 2407.67, 490.256 )
+rotation = 0.308923
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 9 )
+
+[node name="Sprite10" type="Sprite" parent="Bones"]
+modulate = Color( 1, 1, 1, 0.396078 )
+self_modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
+position = Vector2( 1171.31, 636.008 )
+rotation = 0.404916
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 11 )
