@@ -45,68 +45,68 @@ region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 26 )
+atlas = ExtResource( 24 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 26 )
+atlas = ExtResource( 24 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 26 )
+atlas = ExtResource( 24 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 26 )
+atlas = ExtResource( 24 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 26 )
+atlas = ExtResource( 24 )
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
 atlas = ExtResource( 26 )
-region = Rect2( 240, 0, 48, 48 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
 atlas = ExtResource( 26 )
-region = Rect2( 288, 0, 48, 48 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
 atlas = ExtResource( 26 )
-region = Rect2( 336, 0, 48, 48 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 0, 0, 48, 48 )
+atlas = ExtResource( 26 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 48, 0, 48, 48 )
+atlas = ExtResource( 26 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 96, 0, 48, 48 )
+atlas = ExtResource( 26 )
+region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 144, 0, 48, 48 )
+atlas = ExtResource( 26 )
+region = Rect2( 288, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 24 )
-region = Rect2( 192, 0, 48, 48 )
+atlas = ExtResource( 26 )
+region = Rect2( 336, 0, 48, 48 )
 
 [sub_resource type="SpriteFrames" id=21]
 animations = [ {
@@ -115,14 +115,14 @@ animations = [ {
 "name": "enemy_run",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
-"loop": false,
-"name": "enemy_dead",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "enemy_idle",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": false,
+"name": "enemy_dead",
 "speed": 8.0
 } ]
 
@@ -192,6 +192,11 @@ collision_mask = 0
 
 [node name="Gun_FirePointer" type="Node2D" parent="Enemy_Gun"]
 position = Vector2( 31.4996, -10.3925 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 20, 6 )
+enabled = true
+collision_mask = 8
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="Sight" to="." method="_on_Sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_Sight_body_exited"]
