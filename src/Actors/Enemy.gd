@@ -91,6 +91,8 @@ func _on_Sight_body_entered(body):
 	if body == player:
 		player_in_range = true
 
+func _idle():
+	pass
 
 func _on_Sight_body_exited(body):
 	if body == player:

@@ -44,7 +44,7 @@ func _get_transition(_delta):
 			return states.george_chase
 			
 	if state == states.dead:
-		$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.dead)
+		return states.dead#$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.dead)
 		
 func _enter_state(_new_state, _old_state):
 	match _new_state:
