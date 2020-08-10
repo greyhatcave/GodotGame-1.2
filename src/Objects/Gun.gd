@@ -16,7 +16,7 @@ func shoot(_delta):
 	if Input.is_action_just_pressed("fire") && parent.player_alive:
 		var fireball_instance = fireball.instance()
 		fireball_instance.position = $FirePointer.get_global_position()
-		fireball_instance.rotation_degrees = rotation_degrees
+		fireball_instance.rotation = get_angle_to(get_global_mouse_position())
 		if parent.velocity:
 			fireball_instance.apply_impulse(Vector2(), Vector2(fireball_speed, 0).rotated(rotation + rand_range(-0.13, 0.13)))
 		elif Input.is_action_just_pressed("crouch"):

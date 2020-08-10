@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/light.png" type="Texture" id=1]
 [ext_resource path="res://src/Objects/Fireball.gd" type="Script" id=2]
 [ext_resource path="res://assets/pngwing.com.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 17.3059
+radius = 3.75856
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -36,21 +35,16 @@ contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-modulate = Color( 1, 1, 0, 1 )
-rotation = 1.5708
-scale = Vector2( 0.027, 0.027 )
-texture = ExtResource( 1 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2( -3, -14 )
 shape = SubResource( 1 )
 
 [node name="Fireball_Animation" type="AnimatedSprite" parent="."]
 position = Vector2( -4, -23 )
+scale = Vector2( 0.3, 0.3 )
 frames = SubResource( 5 )
 animation = "Projectile_Anim"
+frame = 1
 playing = true
 [connection signal="body_entered" from="." to="." method="_on_Fireball_body_entered"]
 [connection signal="frame_changed" from="Fireball_Animation" to="." method="_on_Fireball_Animation_frame_changed"]
