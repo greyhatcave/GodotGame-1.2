@@ -468,7 +468,7 @@ disabled = true
 position = Vector2( 1177.29, 486.975 )
 
 [node name="Enemy2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 2484.74, 371.148 )
+position = Vector2( 2654.55, 409.415 )
 
 [node name="Enemy5" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1772.44, 722.978 )
@@ -483,6 +483,9 @@ position = Vector2( 2897.61, 677.796 )
 
 [node name="Enemy4" parent="." instance=ExtResource( 27 )]
 position = Vector2( 3608.14, 764.038 )
+
+[node name="Enemy7" parent="." instance=ExtResource( 27 )]
+position = Vector2( 2103.79, 764.038 )
 
 [node name="Bones" type="Node2D" parent="."]
 z_index = 1

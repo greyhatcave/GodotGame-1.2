@@ -23,8 +23,8 @@ onready var anim_player = $AnimatedSprite
 
 
 func _ready():
-	current_hp = max_hp
 	$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.chase)
+	current_hp = max_hp
 
 
 func _physics_process(delta):
@@ -35,7 +35,7 @@ func _apply_gravity(delta):
 	velocity.y += GRAVITY * delta
 
 func _walk():
-	if current_hp > 1:
+	if current_hp >= 1:
 		velocity = move_and_slide(velocity, FLOOR)
 		velocity.x = SPEED * direction
 	
@@ -60,7 +60,6 @@ func OnHit(damage):
 	current_hp -= damage
 	get_node("HealthBar").value = int((float(current_hp) / max_hp) * 100)
 	if current_hp <= 0:
-		$AnimatedSprite.play("enemy_dead")
 		$HealthBar.hide()
 		standing_collision.set_deferred("disabled",true)
 
@@ -82,10 +81,11 @@ func _on_AnimatedSprite_animation_finished():
 		queue_free()
 
 func flip_sprite_to_player():
-	if player.position < position:
-		$AnimatedSprite.flip_h = true
-	if player.position > position:
-		$AnimatedSprite.flip_h = false
+	if current_hp > 0:
+		if player.position < position:
+			$AnimatedSprite.flip_h = true
+		if player.position > position:
+			$AnimatedSprite.flip_h = false
 
 func _on_Sight_body_entered(body):
 	if body == player:
@@ -97,6 +97,7 @@ func _idle():
 func _on_Sight_body_exited(body):
 	if body == player:
 		player_in_range = false
+
 
 func SightCheck():
 	if player_in_range == true:
