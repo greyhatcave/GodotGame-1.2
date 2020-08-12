@@ -28,10 +28,7 @@ func _get_transition(_delta):
 		parent._walk()
 
 	if state == states.george_chase:
-		if parent.current_hp >= 1:
-			parent._walk()
-		if parent.current_hp <= 0:
-			return states.george_dead
+		parent._walk()
 		
 	if state == states.attack:
 		if parent.can_fire == true:
