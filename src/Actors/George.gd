@@ -27,11 +27,17 @@ func _ready():
 	current_hp = max_hp
 
 func _physics_process(delta):
+	george_dead()
 	flip_sprite_to_player()
 	SightCheck()
 
 func _apply_gravity(delta):
 	velocity.y += GRAVITY * delta
+
+func george_dead():
+	if current_hp <= 0:
+		$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.george_dead)
+		stop_flame()
 
 func _walk():
 	if current_hp >= 1:
@@ -112,7 +118,7 @@ func SightCheck():
 				$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.george_attack)
 			if sight_check.collider.name != "Player":
 				player_in_sight = false
-	if current_hp <= 0:
-		$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.george_dead)
 	else:
+		if current_hp > 0:
+			$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.george_chase)
 		stop_flame()

@@ -28,11 +28,16 @@ func _ready():
 
 
 func _physics_process(delta):
+	enemy_dead()
 	flip_sprite_to_player()
 	SightCheck()
 
 func _apply_gravity(delta):
 	velocity.y += GRAVITY * delta
+
+func enemy_dead():
+	if current_hp <= 0:
+		$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.dead)
 
 func _walk():
 	if current_hp >= 1:
@@ -108,8 +113,6 @@ func SightCheck():
 				player_in_sight = true
 				player_position = player.get_global_position()
 				$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.attack)
-			else:
-				player_in_sight = false
-				$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.chase)
 	else:
-		$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.chase)
+		if current_hp > 0:
+			$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.chase)
