@@ -1,19 +1,13 @@
 extends Area2D
 
-
+var fireball = preload("res://src/Objects/Flame.tscn")
 var move = Vector2.ZERO
 var look_vec = Vector2.ZERO
 var player = null
 var speed = 8
 var damage = 5
 
-#var mouse_pos
-
 onready var parent = get_parent()
-
-
-var fireball = preload("res://src/Objects/Flame.tscn")
-
 
 func _ready():
 	if $Bullet_Animation.frame == 0:
@@ -25,7 +19,6 @@ func _ready():
 		#	$AnimatedSprite.flip_h = true
 		#if look_vec.x > 0:
 		#	$AnimatedSprite.flip_h = false
-		
 
 #func _process(delta):
 #	mouse_pos = get_global_mouse_position()
@@ -41,14 +34,9 @@ func _on_Fireball_body_entered(body):
 		body.PlayerOnHit(damage)
 		#queue_free()
 
-
-
 func _on_Fireball_body_entereds(body):
 	if body.is_in_group("World"):
 		queue_free()
-
-
-
 
 func _on_Bullet_Animation_frame_changed():
 	if $Bullet_Animation.frame == 2:
