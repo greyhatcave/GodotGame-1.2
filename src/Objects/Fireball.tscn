@@ -30,7 +30,7 @@ animations = [ {
 } ]
 
 [node name="Fireball" type="RigidBody2D"]
-collision_mask = 8
+collision_mask = 0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
@@ -44,7 +44,6 @@ position = Vector2( -4, -23 )
 scale = Vector2( 0.3, 0.3 )
 frames = SubResource( 5 )
 animation = "Projectile_Anim"
-frame = 1
 playing = true
 [connection signal="body_entered" from="." to="." method="_on_Fireball_body_entered"]
 [connection signal="frame_changed" from="Fireball_Animation" to="." method="_on_Fireball_Animation_frame_changed"]
