@@ -16,7 +16,7 @@ var can_fire = true
 
 onready var standing_collision = $CollisionShape2D
 onready var BULLET_SCENE = preload("res://src/Objects/EnemyBullet.tscn")
-onready var VIRUS_ID = preload("res://src/Objects/VirusID.tscn")
+onready var VIRUS_ID = preload("res://src/Objects/New_VirusID.tscn")
 onready var player = get_parent().get_node("Player")
 onready var anim_player = $AnimatedSprite
 
