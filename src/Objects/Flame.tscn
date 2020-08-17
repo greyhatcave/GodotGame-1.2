@@ -47,3 +47,4 @@ draw_order = 1
 process_material = SubResource( 4 )
 texture = ExtResource( 1 )
 [connection signal="body_entered" from="." to="." method="_on_Flame_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Flame_body_exited"]
