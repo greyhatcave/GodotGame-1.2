@@ -38,6 +38,7 @@ shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="Flame_Collision"]
 show_behind_parent = true
+position = Vector2( -0.166382, 0 )
 scale = Vector2( 0.411765, 0.228571 )
 amount = 1400
 lifetime = 0.3
