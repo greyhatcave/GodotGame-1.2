@@ -2,8 +2,8 @@ extends Area2D
 
 var coin_value = 1
 
-export var speed = 350
-export var steer_force = 150.0
+export var speed = 3500
+export var steer_force = 3500.0
 
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO
@@ -12,7 +12,7 @@ onready var player = get_tree().get_root().get_node("Level01").get_node("Player"
 
 
 func _ready():
-	$AnimationPlayer.play("Bounce_State")
+	$AnimationPlayer.play("New_Bounce")
 	set_physics_process(false)
 
 func _physics_process(delta):
