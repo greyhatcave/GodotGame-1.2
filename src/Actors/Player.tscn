@@ -1,12 +1,10 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://assets/new_player/Gunner_Black_Death.png" type="Texture" id=1]
 [ext_resource path="res://assets/png/health_progress_2.1.png" type="Texture" id=2]
 [ext_resource path="res://assets/png/health_over_2.1.png" type="Texture" id=3]
 [ext_resource path="res://assets/png/health_under_2.1.png" type="Texture" id=4]
 [ext_resource path="res://src/UI/GameOver.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Objects/Flame.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/UI/64.png" type="Texture" id=7]
 [ext_resource path="res://src/UI/VirusID_Score.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/light.png" type="Texture" id=9]
 [ext_resource path="res://assets/new_player/Gunner_Black_Idle.png" type="Texture" id=52]
@@ -167,31 +165,42 @@ extents = Vector2( 35, 26.6444 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
+
 atlas = ExtResource( 1 )
+
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
+
 atlas = ExtResource( 1 )
+
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
+
 atlas = ExtResource( 1 )
+
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
+
 atlas = ExtResource( 1 )
+
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
+
 atlas = ExtResource( 1 )
+
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
+
 atlas = ExtResource( 1 )
 region = Rect2( 240, 0, 48, 48 )
 
@@ -233,16 +242,21 @@ region = Rect2( 96, 0, 48, 48 )
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
 atlas = ExtResource( 53 )
+
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
+
 atlas = ExtResource( 53 )
+
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
+
 atlas = ExtResource( 53 )
+
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=20]
@@ -287,6 +301,7 @@ region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="SpriteFrames" id=28]
 animations = [ {
+
 "frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": false,
 "name": "death_new",
@@ -303,13 +318,21 @@ animations = [ {
 "speed": 8.0
 }, {
 "frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+
+"loop": true,
+"name": "idle_new",
+"speed": 8.0
+}, {
+
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
+
 "loop": true,
 "name": "run_new",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
-"loop": true,
-"name": "idle_new",
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": false,
+"name": "crouch_new",
 "speed": 8.0
 } ]
 
@@ -407,19 +430,6 @@ wait_time = 2.5
 autostart = true
 
 [node name="Game_over_scene" parent="." instance=ExtResource( 5 )]
-
-[node name="Weapon" type="Node2D" parent="."]
-visible = false
-position = Vector2( 39.0141, -168.43 )
-
-[node name="Flame_Pointer" type="Sprite" parent="Weapon"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 7 )
-
-[node name="Flame" parent="Weapon/Flame_Pointer" instance=ExtResource( 6 )]
-visible = false
-show_behind_parent = true
-scale = Vector2( 2, 2 )
 
 [node name="Coin_Detector" type="Area2D" parent="."]
 
