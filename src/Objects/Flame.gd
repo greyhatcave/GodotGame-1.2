@@ -2,18 +2,10 @@ extends Node2D
 
 onready var player = get_node("/root/Level01/Player")
 
-var target
-var damage = 10
+var damage = 50
 const ROTATION_SPEED = 90.0
-
 var damage_on_queue = 0.0
-#var damage_speed = 1.0
-
-var  player_inside_flame
-
-#func take_damage(duration, damage): # queue damage and set speed
-#	damage_on_queue += damage
-#	damage_speed = damage / duration
+var player_inside_flame # Boolean
 
 func _process(delta):
 	var target_rotation = (player.get_position() - global_position).angle()
@@ -29,23 +21,18 @@ func _process(delta):
 	else:
 		rotation += rotate
 		
-#	if player_inside_flame == true:
-#		damage_on_queue += delta * damage
-
-#	if damage_on_queue > 0.0:
-#		var damage = delta * damage_speed
-#		if damage > damage_on_queue:
-#			damage = damage_on_queue
-#		damage_on_queue -= damage # Apply damage
-#		print(damage_on_queue)
+	if player_inside_flame == true:
+		var dps = damage * delta
+		damage_on_queue += dps
+		
+	if damage_on_queue > 0.0:
+		player.PlayerOnHit(damage_on_queue)
+		damage_on_queue = 0
 
 func _on_Flame_body_entered(body): 
 	if body.is_in_group("Player"): # if Player entered flame
 		player_inside_flame = true
-		print("Player inside flame: ", player_inside_flame)
-	
 
 func _on_Flame_body_exited(body): 
 	if body.is_in_group("Player"): # if Player exited flame
 		player_inside_flame = false
-		print("Player inside flame: ", player_inside_flame)
