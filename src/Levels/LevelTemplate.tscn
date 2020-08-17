@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Objects/Box.tscn" type="PackedScene" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://assets/TILES_64/Tile (14).png" type="Texture" id=28]
 [ext_resource path="res://assets/TILES_64/Tile (15).png" type="Texture" id=29]
 [ext_resource path="res://assets/TILES_64/Tile (16).png" type="Texture" id=30]
+[ext_resource path="res://src/Actors/Degota.tscn" type="PackedScene" id=31]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -642,3 +643,6 @@ texture = ExtResource( 11 )
 position = Vector2( 698.364, 523.381 )
 mode = 1
 mass = 8.16327
+
+[node name="Degota" parent="." instance=ExtResource( 31 )]
+position = Vector2( 511.558, 727.405 )

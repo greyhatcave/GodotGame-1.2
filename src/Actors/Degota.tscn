@@ -1,111 +1,111 @@
 [gd_scene load_steps=32 format=2]
 
-[ext_resource path="res://StateMachine.gd" type="Script" id=1]
-[ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=2]
-[ext_resource path="res://assets/png/health_under_2.1.png" type="Texture" id=3]
-[ext_resource path="res://assets/png/health_progress_2.1.png" type="Texture" id=4]
-[ext_resource path="res://assets/png/health_over_2.1.png" type="Texture" id=5]
-[ext_resource path="res://src/StateMachine/EnemyFSM.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/new_enemy/Gunner_Red_Idle.png" type="Texture" id=24]
-[ext_resource path="res://assets/new_enemy/Gunner_Red_Run.png" type="Texture" id=25]
-[ext_resource path="res://assets/new_enemy/Gunner_Red_Death.png" type="Texture" id=26]
+[ext_resource path="res://src/Actors/Degota.gd" type="Script" id=1]
+[ext_resource path="res://assets/new_enemy/enemy/Gunner_Green_Idle.png" type="Texture" id=2]
+[ext_resource path="res://assets/new_enemy/enemy/Gunner_Green_Death.png" type="Texture" id=3]
+[ext_resource path="res://assets/new_enemy/enemy/Gunner_Green_Run.png" type="Texture" id=4]
+[ext_resource path="res://src/StateMachine/EnemyFSM.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/png/health_over_2.1.png" type="Texture" id=6]
+[ext_resource path="res://assets/png/health_under_2.1.png" type="Texture" id=7]
+[ext_resource path="res://assets/png/health_progress_2.1.png" type="Texture" id=8]
+[ext_resource path="res://src/Objects/Launcher.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 46.1473, 51.5233 )
+extents = Vector2( 36.0389, 44.4805 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
-atlas = ExtResource( 26 )
+atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
-atlas = ExtResource( 26 )
+atlas = ExtResource( 3 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = ExtResource( 26 )
+atlas = ExtResource( 3 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
-atlas = ExtResource( 26 )
+atlas = ExtResource( 3 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
-atlas = ExtResource( 26 )
+atlas = ExtResource( 3 )
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = ExtResource( 26 )
+atlas = ExtResource( 3 )
 region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 26 )
+atlas = ExtResource( 3 )
 region = Rect2( 288, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 26 )
+atlas = ExtResource( 3 )
 region = Rect2( 336, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 24 )
+atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 24 )
+atlas = ExtResource( 2 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 24 )
+atlas = ExtResource( 2 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
-atlas = ExtResource( 24 )
+atlas = ExtResource( 2 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
-atlas = ExtResource( 24 )
+atlas = ExtResource( 2 )
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 4 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 4 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 4 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 4 )
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 25 )
+atlas = ExtResource( 4 )
 region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="SpriteFrames" id=21]
@@ -127,42 +127,36 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=22]
-radius = 612.761
+radius = 439.582
 
-[node name="Enemy" type="KinematicBody2D" groups=[
+[node name="Degota" type="KinematicBody2D" groups=[
 "Enemies",
 ]]
 scale = Vector2( 0.8, 0.8 )
-z_index = 1025
 collision_layer = 2
 collision_mask = 3
-script = ExtResource( 2 )
-
-[node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource( 1 )
 
-[node name="EnemyFSM" parent="." instance=ExtResource( 6 )]
+[node name="EnemyFSM" parent="." instance=ExtResource( 5 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -11.1734, -8.3468 )
+position = Vector2( 0, -1.25 )
 shape = SubResource( 1 )
 
-[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
-position = Vector2( -10.1259, 25.9216 )
-scale = Vector2( 0.811448, 1.90784 )
-rect = Rect2( -50, -50, 100, 60 )
-process_parent = true
-physics_process_parent = true
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 3, 3 )
+frames = SubResource( 21 )
+animation = "enemy_idle"
 
 [node name="HealthBar" type="TextureProgress" parent="."]
 margin_left = -34.0
-margin_top = -77.75
+margin_top = -77.0
 margin_right = 36.0
-margin_bottom = -69.75
+margin_bottom = -69.0
 value = 100.0
-texture_under = ExtResource( 3 )
-texture_over = ExtResource( 5 )
-texture_progress = ExtResource( 4 )
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 6 )
+texture_progress = ExtResource( 8 )
 tint_under = Color( 0.156863, 0.156863, 0.156863, 1 )
 tint_progress = Color( 0.0509804, 0.945098, 0.192157, 1 )
 nine_patch_stretch = true
@@ -170,33 +164,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 3, 3 )
-frames = SubResource( 21 )
-animation = "enemy_run"
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 20, 6 )
+enabled = true
+collision_mask = 8
 
 [node name="Sight" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sight"]
 visible = false
-modulate = Color( 0.898039, 1, 0, 1 )
 shape = SubResource( 22 )
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
-
 [node name="Enemy_Gun" type="KinematicBody2D" parent="."]
-collision_layer = 0
-collision_mask = 0
 
 [node name="Gun_FirePointer" type="Node2D" parent="Enemy_Gun"]
-position = Vector2( 31.4996, -10.3925 )
+position = Vector2( 55.1318, -8.8509 )
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2( 20, 6 )
-enabled = true
-collision_mask = 8
+[node name="Launcher" parent="." instance=ExtResource( 9 )]
+visible = false
+position = Vector2( 44.885, -11.0174 )
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="Sight" to="." method="_on_Sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_Sight_body_exited"]
