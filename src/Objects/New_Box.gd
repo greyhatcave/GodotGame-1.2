@@ -23,7 +23,7 @@ func OnHit(damage):
 
 func explode():
 	box_collision.set_deferred("disabled",true)
-	for i in range(10):
+	for _i in range(10):
 		var virus = VIRUS_ID.instance()
 		virus.position = calculate_random_spawn_position()
 		get_node("/root/Level01").call_deferred("add_child", virus)

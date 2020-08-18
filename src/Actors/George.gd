@@ -24,7 +24,7 @@ func _ready():
 	$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.george_chase)
 	current_hp = max_hp
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	george_dead()
 	flip_sprite_to_player()
 	SightCheck()

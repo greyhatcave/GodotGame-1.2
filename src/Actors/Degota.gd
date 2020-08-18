@@ -27,7 +27,7 @@ func _ready():
 	current_hp = max_hp
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	enemy_dead()
 	flip_sprite_to_player()
 	SightCheck()
