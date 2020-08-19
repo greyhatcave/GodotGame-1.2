@@ -31,7 +31,7 @@ var player_alive = true
 var total_coin = 0
 
 
-var max_hp = 250
+var max_hp = 50
 
 onready var current_coin = total_coin
 onready var state_machine = $PlayerFSM
@@ -100,8 +100,6 @@ func PlayerOnHit(damage):
 
 func AddCoin(coin_value):
 	total_coin += coin_value
-	#Print for testing
-	print(total_coin) 
 	get_node(\"VirusID_Score/Panel/Amount\").text = str(total_coin)
 	
 	
@@ -163,155 +161,155 @@ extents = Vector2( 39.8786, 28.041 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 35, 26.6444 )
 
-[sub_resource type="AtlasTexture" id=25]
-flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=26]
-flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=27]
-flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 96, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=28]
-flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 144, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=29]
-flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 192, 0, 48, 48 )
-
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 55 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 55 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 55 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = ExtResource( 53 )
-region = Rect2( 144, 0, 48, 48 )
+atlas = ExtResource( 52 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 53 )
-region = Rect2( 192, 0, 48, 48 )
+atlas = ExtResource( 52 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 53 )
-region = Rect2( 240, 0, 48, 48 )
+atlas = ExtResource( 52 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 48, 48 )
+atlas = ExtResource( 52 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 48, 48 )
+atlas = ExtResource( 52 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 48, 48 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 144, 0, 48, 48 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 48, 48 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 240, 0, 48, 48 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 288, 0, 48, 48 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 336, 0, 48, 48 )
+region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 55 )
-region = Rect2( 0, 0, 48, 48 )
+atlas = ExtResource( 1 )
+region = Rect2( 288, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 55 )
-region = Rect2( 48, 0, 48, 48 )
+atlas = ExtResource( 1 )
+region = Rect2( 336, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 55 )
-region = Rect2( 96, 0, 48, 48 )
+atlas = ExtResource( 53 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 53 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 53 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 53 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 53 )
+region = Rect2( 192, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 53 )
+region = Rect2( 240, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=26]
 flags = 4
 atlas = ExtResource( 54 )
 region = Rect2( 0, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=22]
+[sub_resource type="AtlasTexture" id=27]
 flags = 4
 atlas = ExtResource( 54 )
 region = Rect2( 48, 0, 48, 48 )
 
-[sub_resource type="SpriteFrames" id=23]
+[sub_resource type="SpriteFrames" id=28]
 animations = [ {
-"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
-"loop": true,
-"name": "idle_new",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
-"loop": true,
-"name": "run_new",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
-"loop": false,
-"name": "death_new",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": false,
 "name": "crouch_new",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 21 ), SubResource( 22 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "idle_new",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": false,
+"name": "death_new",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
+"loop": true,
+"name": "run_new",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 26 ), SubResource( 27 ) ],
 "loop": false,
 "name": "jump_new",
 "speed": 8.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 17.7, 30 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -364,7 +362,7 @@ disabled = true
 position = Vector2( 0, -210 )
 scale = Vector2( 3, 3 )
 z_index = 1025
-frames = SubResource( 23 )
+frames = SubResource( 28 )
 animation = "idle_new"
 
 [node name="PlayerHealth" type="TextureProgress" parent="."]
@@ -410,6 +408,6 @@ autostart = true
 [node name="Coin_Collision" type="CollisionShape2D" parent="Coin_Detector"]
 visible = false
 position = Vector2( 0, -165 )
-shape = SubResource( 24 )
+shape = SubResource( 29 )
 
 [node name="VirusID_Score" parent="." instance=ExtResource( 8 )]

@@ -69,7 +69,7 @@ position = Vector2( 0, -4.23504 )
 scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 5 )
 animation = "New Anim 3"
-frame = 2
+frame = 3
 playing = true
 [connection signal="body_entered" from="." to="." method="_on_New_VirusID_body_entered"]
 [connection signal="body_entered" from="Sight" to="." method="_on_Sight_body_entered"]

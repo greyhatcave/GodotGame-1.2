@@ -1,19 +1,26 @@
 extends RigidBody2D
 
 var damage = 1
-var fire_direction
-var origin
+
+func _physics_process(_delta):
+	if $Area2D/AnimatedSprite.frame == 21:
+		queue_free()
 
 func _on_Fireball_body_entered(body):
+	$Fireball_Animation.hide()
 	if body.is_in_group("Enemies"):
+		$CollisionShape2D.set_deferred("disabled", true)
 		body.OnHit(damage)
-	queue_free()
-  
+		$Area2D/AnimatedSprite.play("default")
 	if body.is_in_group("Box"):
 		body.OnHit(damage)
-		queue_free()
-    
-func _on_Fireball_Animation_frame_changed():
-	if $Fireball_Animation.frame == 2:
-		print("FRAME 2")
-		$Fireball_Animation.stop()
+		if $CollisionShape2D.disabled == false:
+			$CollisionShape2D.set_deferred("disabled", true)
+		if !$Area2D/AnimatedSprite.play("default"):
+			$Area2D/AnimatedSprite.play("default")
+	else:
+		if $CollisionShape2D.disabled == false:
+			$CollisionShape2D.set_deferred("disabled", true)
+		if !$Area2D/AnimatedSprite.play("default"):
+			$Area2D/AnimatedSprite.play("default")
+

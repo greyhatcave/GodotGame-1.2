@@ -3,8 +3,9 @@ extends Area2D
 var coin_value = 1
 
 export var speed = 550
-export var steer_force = 300.0
+export var steer_force = 400.0
 var parent = get_parent()
+var damage = 10
 
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO
@@ -13,11 +14,7 @@ var target = null
 onready var degota = get_tree().get_root().get_node("Level01").get_node("Degota")
 onready var player = get_tree().get_root().get_node("Level01").get_node("Player")
 
-
-	#$AnimationPlayer.play("New_Bounce")
-	#set_physics_process(false)
-
-func _process(delta):
+func _process(_delta):
 	if degota.can_fire == false:
 		set_physics_process(true)
 
@@ -43,5 +40,7 @@ func seek():
 
 
 
-func _on_Launcher_body_shape_entered(body_id, body, body_shape, area_shape):
+func _on_Launcher_body_shape_entered(_body_id, body, _body_shape, _area_shape):
+	if body.is_in_group("Player"):
+		body.PlayerOnHit(damage)
 	queue_free()
