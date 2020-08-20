@@ -30,6 +30,10 @@ config/name="Platformer"
 run/main_scene="res://src/Levels/LevelTemplate.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Globals="*res://Globals.gd"
+
 [debug]
 
 settings/fps/force_fps=60
