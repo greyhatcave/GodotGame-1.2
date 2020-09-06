@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/png/Virus_Sprites_01/virus_id_6.png" type="Texture" id=1]
 [ext_resource path="res://src/UI/VirusID_Score.gd" type="Script" id=2]
+[ext_resource path="res://src/UI/Score.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/font_default.tres" type="DynamicFont" id=4]
 
 [node name="VirusID_Score" type="CanvasLayer"]
 scale = Vector2( 1.5, 1.5 )
@@ -9,37 +11,44 @@ transform = Transform2D( 1.5, 0, 0, 1.5, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="Panel" type="Panel" parent="."]
-anchor_right = 0.19
-margin_left = 700.0
+self_modulate = Color( 0.0627451, 0.368627, 0.054902, 0.45098 )
+anchor_left = -0.000579929
+anchor_top = 8.83032e-10
+anchor_right = 0.18942
+anchor_bottom = 8.83032e-10
+margin_left = 572.113
 margin_top = 10.0
-margin_right = 475.0
-margin_bottom = 39.0
+margin_right = 448.314
+margin_bottom = 46.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Panel"]
-margin_left = 6.0
-margin_right = 146.0
-margin_bottom = 30.0
+margin_left = 9.0
+margin_top = 1.0
+margin_right = 255.0
+margin_bottom = 35.0
+custom_fonts/font = ExtResource( 4 )
 text = "VIRUS ID"
 valign = 1
-
-[node name="Amount" type="Label" parent="Panel"]
-margin_left = 99.0
-margin_right = 146.0
-margin_bottom = 30.0
-text = "0"
-align = 1
-valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="Panel"]
-margin_left = 81.0
-margin_top = 4.0
-margin_right = 593.0
-margin_bottom = 516.0
-rect_scale = Vector2( 0.04, 0.04 )
+margin_left = 131.526
+margin_top = 0.491241
+margin_right = 643.526
+margin_bottom = 512.491
+rect_scale = Vector2( 0.06, 0.06 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Score" parent="Panel" instance=ExtResource( 3 )]
+margin_left = 194.278
+margin_top = -0.526285
+margin_right = -30.7218
+margin_bottom = -36.5263
