@@ -1,6 +1,8 @@
 extends Area2D
 
 var coin_value = 1
+var random = RandomNumberGenerator.new()
+
 
 export var speed = 3500
 export var steer_force = 3500.0
@@ -12,6 +14,7 @@ onready var player = get_tree().get_root().get_node("Level01").get_node("Player"
 
 
 func _ready():
+	random.randomize()
 	$AnimationPlayer.play("New_Bounce")
 	set_physics_process(false)
 
@@ -39,7 +42,8 @@ func seek():
 func _on_New_VirusID_body_entered(body):
 	if body.is_in_group("Player"):
 		body.AddCoin(coin_value)
-		Globals.points += 1
+		var n = random.randi_range(100, 110)
+		Globals.points += n
 		queue_free()
 
 
