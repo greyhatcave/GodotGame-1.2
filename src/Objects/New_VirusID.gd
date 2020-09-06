@@ -39,6 +39,7 @@ func seek():
 func _on_New_VirusID_body_entered(body):
 	if body.is_in_group("Player"):
 		body.AddCoin(coin_value)
+		Globals.points += 1
 		queue_free()
 
 
