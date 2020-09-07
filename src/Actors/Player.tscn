@@ -31,7 +31,7 @@ var player_alive = true
 var total_coin = 0
 
 
-var max_hp = 50
+var max_hp = 500
 
 onready var current_coin = total_coin
 onready var state_machine = $PlayerFSM
@@ -173,43 +173,43 @@ region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
-atlas = ExtResource( 55 )
+atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = ExtResource( 55 )
+atlas = ExtResource( 1 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 55 )
+atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 0, 0, 48, 48 )
+atlas = ExtResource( 1 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 48, 0, 48, 48 )
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 96, 0, 48, 48 )
+atlas = ExtResource( 1 )
+region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 144, 0, 48, 48 )
+atlas = ExtResource( 1 )
+region = Rect2( 288, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 192, 0, 48, 48 )
+atlas = ExtResource( 1 )
+region = Rect2( 336, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
@@ -243,43 +243,43 @@ region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 52 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 52 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 52 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 52 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
-atlas = ExtResource( 1 )
+atlas = ExtResource( 52 )
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 240, 0, 48, 48 )
+atlas = ExtResource( 55 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 288, 0, 48, 48 )
+atlas = ExtResource( 55 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 336, 0, 48, 48 )
+atlas = ExtResource( 55 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="SpriteFrames" id=28]
 animations = [ {
@@ -288,25 +288,25 @@ animations = [ {
 "name": "jump_new",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
 "loop": false,
-"name": "crouch_new",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
-"loop": true,
-"name": "idle_new",
-"speed": 5.0
+"name": "death_new",
+"speed": 10.0
 }, {
 "frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
 "loop": true,
 "name": "run_new",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": true,
+"name": "idle_new",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
 "loop": false,
-"name": "death_new",
-"speed": 10.0
+"name": "crouch_new",
+"speed": 8.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=29]

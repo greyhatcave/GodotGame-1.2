@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Enemies
 
 const GRAVITY = 3000
 const SPEED = 50
@@ -6,15 +6,15 @@ const FLOOR = Vector2(0, -1)
 
 var velocity = Vector2()
 var direction = 1
-var max_hp = 6
-var current_hp
+#var max_hp = 6
+#var current_hp
 var player_in_range
 var player_in_sight
 var player_position
 
 var can_fire = true
 
-onready var standing_collision = $CollisionShape2D
+#onready var standing_collision = $CollisionShape2D
 onready var BULLET_SCENE = preload("res://src/Objects/EnemyBullet.tscn")
 onready var VIRUS_ID = preload("res://src/Objects/New_VirusID.tscn")
 onready var player = get_parent().get_node("Player")
@@ -22,7 +22,7 @@ onready var anim_player = $AnimatedSprite
 
 func _ready():
 	$EnemyFSM.call_deferred("set_state", $EnemyFSM.states.george_chase)
-	current_hp = max_hp
+#	current_hp = max_hp
 
 func _physics_process(_delta):
 	george_dead()
@@ -70,12 +70,12 @@ func stop_flame():
 	$Weapon/Flame/Flame_Collision.disabled = true
 	$Weapon/Flame/Flame_Collision/Particles2D.emitting = false
 
-func OnHit(damage):
-	current_hp -= damage
-	get_node("HealthBar").value = int((float(current_hp) / max_hp) * 100)
-	if current_hp <= 0:
-		$HealthBar.hide()
-		standing_collision.set_deferred("disabled",true)
+#func OnHit(damage):
+#	current_hp -= damage
+#	get_node("HealthBar").value = int((float(current_hp) / max_hp) * 100)
+#	if current_hp <= 0:
+#		$HealthBar.hide()
+#		standing_collision.set_deferred("disabled",true)
 
 func _on_AnimatedSprite_animation_finished():
 	if current_hp <= 0:
