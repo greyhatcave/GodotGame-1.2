@@ -26,7 +26,7 @@
 [ext_resource path="res://assets/png/Explosion4/0017.png" type="Texture" id=24]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 19.3633
+radius = 15.0832
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -63,6 +63,7 @@ animations = [ {
 collision_mask = 0
 mode = 2
 mass = 8.16327
+gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )

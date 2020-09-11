@@ -24,15 +24,15 @@ func on_timeout_complete():
 
 func _process(_delta):
 	look_at(get_global_mouse_position())
-	shoot(fireball)
-		
-		
-# Call shoot in player.tscn::1 with 'child'
+
+	if parent.current_weapon == 1:
+		shoot(_delta)
+
+
 func shoot(_delta):
-	if Input.is_action_just_pressed("fire") && can_shoot:#parent.player_alive:
+	if Input.is_action_just_pressed("fire") && can_shoot:
 		var fireball_instance = fireball.instance()
 		fireball_instance.position = $FirePointer.get_global_position()
-		fireball_instance.rotation = get_angle_to(get_global_mouse_position())
 		if parent.velocity:
 			fireball_instance.apply_impulse(Vector2(), Vector2(fireball_speed, 0).rotated(rotation + rand_range(-0.13, 0.13)))
 		elif Input.is_action_just_pressed("crouch"):

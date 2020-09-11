@@ -19,8 +19,6 @@ onready var degota = get_tree().get_root().get_node("Level01").get_node("Degota"
 onready var player = get_tree().get_root().get_node("Level01").get_node("Player")
 
 
-
-
 func _ready():
 	timer = Timer.new()
 	timer.set_one_shot(true)
