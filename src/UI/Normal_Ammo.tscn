@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/pngwing.com.png" type="Texture" id=1]
+[ext_resource path="res://assets/montserrat_extrabold.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/UI/Normal_Bullets.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+outline_size = 1
+outline_color = Color( 0, 0.603922, 0.266667, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 384, 0, 192, 192 )
+
+[node name="Normal_Ammo" type="Control"]
+visible = false
+margin_right = 184.0
+margin_bottom = 56.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1.0
+margin_bottom = -2.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Normal_Bullets" type="Label" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 85.0
+margin_right = -1.52588e-05
+margin_bottom = -3.8147e-06
+custom_fonts/font = SubResource( 1 )
+text = "100"
+align = 1
+valign = 1
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -49.6848
+margin_top = -87.9665
+margin_right = -41.6848
+margin_bottom = 48.0335
+texture = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
