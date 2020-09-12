@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/UI/Inventory.gd" type="Script" id=1]
 [ext_resource path="res://src/UI/New_Health_Bar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/UI/Mask_Lifetime.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/VirusID_Score.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/UI/Shotgun_Ammo.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/UI/Normal_Ammo.tscn" type="PackedScene" id=6]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -59,3 +61,15 @@ margin_bottom = -1012.0
 
 [node name="VirusID_Score" parent="." instance=ExtResource( 4 )]
 script = null
+
+[node name="Shotgun_Ammo" parent="." instance=ExtResource( 5 )]
+margin_left = 1255.15
+margin_top = 13.218
+margin_right = -480.848
+margin_bottom = -1010.78
+
+[node name="Normal_Ammo" parent="." instance=ExtResource( 6 )]
+margin_left = 1255.15
+margin_top = 13.2176
+margin_right = 1439.15
+margin_bottom = 69.2176

@@ -27,22 +27,24 @@ func _process(_delta):
 
 
 func shoot(_delta):
-	if Input.is_action_pressed("fire") and can_fire == true:
-		var projectiles_angles = [0]
-		var projectiles = 4
-		for i in range(1, projectiles * 2):
-			var num = float(i) / 8
-			projectiles_angles.append(num)
-			projectiles_angles.append(num * -1)
-	
-		for i in range(projectiles):
-			var bullet_instance = fireball.instance()
-			var angle = get_angle_to(get_global_mouse_position())
-			angle += projectiles_angles[i]
-			bullet_instance.position = $FirePointer.global_position
-			bullet_instance.rotation = angle
-			get_tree().get_root().add_child(bullet_instance)
-	
-		can_fire = false
-		yield(get_tree().create_timer(fire_rate), "timeout")
-		can_fire = true
+	if Globals.shotgun_bullets >= 1:
+		if Input.is_action_pressed("fire") and can_fire == true:
+			Globals.shotgun_bullets -= 1
+			var projectiles_angles = [0]
+			var projectiles = 4
+			for i in range(1, projectiles * 2):
+				var num = float(i) / 8
+				projectiles_angles.append(num)
+				projectiles_angles.append(num * -1)
+		
+			for i in range(projectiles):
+				var bullet_instance = fireball.instance()
+				var angle = get_angle_to(get_global_mouse_position())
+				angle += projectiles_angles[i]
+				bullet_instance.position = $FirePointer.global_position
+				bullet_instance.rotation = angle
+				get_tree().get_root().add_child(bullet_instance)
+		
+			can_fire = false
+			yield(get_tree().create_timer(fire_rate), "timeout")
+			can_fire = true
