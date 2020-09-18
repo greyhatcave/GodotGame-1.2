@@ -1,11 +1,18 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://assets/new_player/Gunner_Black_Death.png" type="Texture" id=1]
 [ext_resource path="res://src/Objects/Gun.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Objects/New_Gun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/new_player/rifle.png" type="Texture" id=4]
 [ext_resource path="res://src/UI/GameOver.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/new_player/shotgun.png" type="Texture" id=6]
+[ext_resource path="res://assets/new_player/Gunner_Black_Idle_gun.png" type="Texture" id=7]
 [ext_resource path="res://src/UI/VirusID_Score.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/light.png" type="Texture" id=9]
+[ext_resource path="res://assets/new_player/Gunner_Black_Run_gun.png" type="Texture" id=10]
+[ext_resource path="res://src/Actors/Arms.gd" type="Script" id=11]
+[ext_resource path="res://assets/new_player/Gunner_Black_Crouch_gun.png" type="Texture" id=12]
+[ext_resource path="res://assets/new_player/Gunner_Black_Crouchwalk_gun.png" type="Texture" id=13]
 [ext_resource path="res://assets/new_player/Gunner_Black_Idle.png" type="Texture" id=52]
 [ext_resource path="res://assets/new_player/Gunner_Black_Run.png" type="Texture" id=53]
 [ext_resource path="res://assets/new_player/Gunner_Black_Jump.png" type="Texture" id=54]
@@ -24,7 +31,7 @@ const BAR_SPEED = 5
 
 
 var current_bar_value = 100
-
+var parent = get_parent()
 var velocity = Vector2()
 var move_speed = 4 * 125
 var gravity = 1750
@@ -57,6 +64,12 @@ func _ready():
 	
 
 func _physics_process(_delta):
+	
+#	if current_weapon == 1:
+#		$Arms/Rifle.look_at(get_global_mouse_position())
+#	if current_weapon == 2:
+#		parent.look_at(get_global_mouse_position())
+	
 	var was_grounded = is_grounded
 	is_grounded = is_on_floor()
 	
@@ -85,19 +98,16 @@ func _input(event):
 		if current_weapon == 1:
 			normal_ammo.show()
 			shotgun_ammo.hide()
-#		get_node(\"Gun\").show()#set_opacity(1)
-#		get_node(\"New_Gun\").hide()#set_opacity(0)
-#		print(\"USING WEAPON 1\")
-		# you can also trigger animations or play sound effects here
+			$Arms/Rifle.show()
+			$Arms/Shotgun.hide()
+
 	elif event.is_action_pressed(\"weapon_2\"):
 		current_weapon = 2
 		if current_weapon == 2:
 			shotgun_ammo.show()
 			normal_ammo.hide()
-			
-#		get_node(\"Gun\").hide()#set_opacity(0)
-#		get_node(\"New_Gun\").show()#set_opacity(1)
-#		print(\"USING WEAPON 2\")
+			$Arms/Shotgun.show()
+			$Arms/Rifle.hide()
 
 func _handle_move_input(var move_speed = self.move_speed):
 	if player_alive:
@@ -105,16 +115,46 @@ func _handle_move_input(var move_speed = self.move_speed):
 		velocity.x = lerp(velocity.x, move_speed * move_direction, _get_h_weight())
 		
 		#Flip sprite horizontally depending on the players choice to walk left/right
-		if move_direction < 0 && player_alive:
+		
+		if move_direction < 0 && player_alive:		#MOVE LEFT
 			$AnimatedSprite.flip_h = true
-			$Gun.position.x = -50
-			$New_Gun.position.x = -50
-		elif move_direction > 0 && player_alive:
+#			$Arms/Rifle/Gun.position.x = -50
+#			$New_Gun.position.x = -50
+			
+			if current_weapon == 1:
+			
+				$Arms/Rifle.position.x = 16
+				$Arms/Rifle.position.y = -216
+				$Arms/Rifle.offset.x = 10
+				$Arms/Rifle.offset.y = -2
+				$Arms/Rifle.flip_v = true
+			if current_weapon == 2:
+			
+				$Arms/Shotgun.position.x = 16
+				$Arms/Shotgun.position.y = -216
+				$Arms/Shotgun.offset.x = 10
+				$Arms/Shotgun.offset.y = -2
+				$Arms/Shotgun.flip_v = true
+			
+		elif move_direction > 0 && player_alive:		#MOVE RIGHT
 			$AnimatedSprite.flip_h = false
-			$Gun.position.x = 50
-			$New_Gun.position.x = 50
-		#elif move_direction == 0 && !player_alive:
-		#	pass
+#			$Arms/Rifle/Gun.position.x = 50
+#			$New_Gun.position.x = 50
+			
+			if current_weapon == 1:
+			
+				$Arms/Rifle.position.x = -16
+				$Arms/Rifle.position.y = -212
+				$Arms/Rifle.offset.x = 10
+				$Arms/Rifle.offset.y = -2
+				$Arms/Rifle.flip_v = false
+				
+			if current_weapon == 2:
+				$Arms/Shotgun.position.x = -16
+				$Arms/Shotgun.position.y = -212
+				$Arms/Shotgun.offset.x = 10
+				$Arms/Shotgun.offset.y = -2
+				$Arms/Shotgun.flip_v = false
 
 func _get_h_weight():
 	return 0.5 if is_grounded else 0.4	
@@ -191,153 +231,273 @@ extents = Vector2( 35, 26.6444 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 7 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 7 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 7 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 7 )
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 53 )
-region = Rect2( 240, 0, 48, 48 )
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 48, 48 )
+atlas = ExtResource( 13 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 48, 48 )
+atlas = ExtResource( 13 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 48, 48 )
+atlas = ExtResource( 13 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 144, 0, 48, 48 )
+atlas = ExtResource( 13 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 48, 48 )
+atlas = ExtResource( 13 )
+region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 240, 0, 48, 48 )
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 288, 0, 48, 48 )
+atlas = ExtResource( 12 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 336, 0, 48, 48 )
+atlas = ExtResource( 12 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 52 )
+atlas = ExtResource( 10 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 52 )
+atlas = ExtResource( 10 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 52 )
+atlas = ExtResource( 10 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
-atlas = ExtResource( 52 )
+atlas = ExtResource( 10 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
-atlas = ExtResource( 52 )
+atlas = ExtResource( 10 )
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
+atlas = ExtResource( 10 )
+region = Rect2( 240, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 53 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 53 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 53 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 53 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 53 )
+region = Rect2( 192, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 53 )
+region = Rect2( 240, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 52 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 52 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 52 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 52 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 52 )
+region = Rect2( 192, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=35]
+flags = 4
+atlas = ExtResource( 54 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=36]
+flags = 4
+atlas = ExtResource( 54 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=37]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=38]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=39]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=40]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=41]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 240, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=43]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 288, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=44]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 336, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=45]
+flags = 4
 atlas = ExtResource( 55 )
 region = Rect2( 0, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=24]
+[sub_resource type="AtlasTexture" id=46]
 flags = 4
 atlas = ExtResource( 55 )
 region = Rect2( 48, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=25]
+[sub_resource type="AtlasTexture" id=47]
 flags = 4
 atlas = ExtResource( 55 )
 region = Rect2( 96, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=26]
-flags = 4
-atlas = ExtResource( 54 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=27]
-flags = 4
-atlas = ExtResource( 54 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="SpriteFrames" id=28]
+[sub_resource type="SpriteFrames" id=48]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": true,
+"name": "crawl",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": false,
+"name": "crouch",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "run",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
 "loop": true,
 "name": "run_new",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
-"loop": false,
-"name": "death_new",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
 "loop": true,
 "name": "idle_new",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
-"loop": false,
-"name": "crouch_new",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 26 ), SubResource( 27 ) ],
+"frames": [ SubResource( 35 ), SubResource( 36 ) ],
 "loop": false,
 "name": "jump_new",
 "speed": 8.0
+}, {
+"frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ) ],
+"loop": false,
+"name": "death_new",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
+"loop": false,
+"name": "crouch_new",
+"speed": 8.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=29]
+[sub_resource type="RectangleShape2D" id=49]
 extents = Vector2( 17.7, 30 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -347,6 +507,36 @@ scale = Vector2( 0.8, 0.8 )
 z_index = 1025
 collision_mask = 2
 script = SubResource( 1 )
+
+[node name="Arms" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="Rifle" type="Sprite" parent="Arms"]
+visible = false
+position = Vector2( -16, -212 )
+scale = Vector2( 2.8, 2.8 )
+z_index = 1026
+texture = ExtResource( 4 )
+offset = Vector2( 10, -2 )
+
+[node name="Gun" parent="Arms/Rifle" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 18.7625, -3.79962 )
+scale = Vector2( 0.357143, 0.357143 )
+
+[node name="Shotgun" type="Sprite" parent="Arms"]
+visible = false
+position = Vector2( -16, -212 )
+scale = Vector2( 2.8, 2.8 )
+z_index = 1026
+texture = ExtResource( 6 )
+offset = Vector2( 10, -2 )
+
+[node name="New_Gun" parent="Arms/Shotgun" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 18.9259, -3.92643 )
+scale = Vector2( 0.357143, 0.357143 )
+z_index = 1026
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 0, -170 )
@@ -390,8 +580,8 @@ disabled = true
 position = Vector2( 0, -210 )
 scale = Vector2( 3, 3 )
 z_index = 1025
-frames = SubResource( 28 )
-animation = "idle_new"
+frames = SubResource( 48 )
+animation = "idle"
 
 [node name="Raycasts" type="Node2D" parent="."]
 position = Vector2( 0, -167.5 )
@@ -421,15 +611,6 @@ autostart = true
 [node name="Coin_Collision" type="CollisionShape2D" parent="Coin_Detector"]
 visible = false
 position = Vector2( 0, -165 )
-shape = SubResource( 29 )
+shape = SubResource( 49 )
 
 [node name="VirusID_Score" parent="." instance=ExtResource( 8 )]
-
-[node name="Gun" parent="." instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 67.9025, -214.573 )
-
-[node name="New_Gun" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( 68.36, -214.48 )
-z_index = 1026

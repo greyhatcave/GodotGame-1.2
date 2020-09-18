@@ -7,6 +7,8 @@ var fire_rate = 0.7
 var bullet_delay = 0.1
 var can_fire = true
 var fireball = preload("res://src/Objects/New_Gun_Projectile.tscn")
+onready var player = get_tree().get_root().get_node("Level01").get_node("Player")
+
 
 
 func _ready():
@@ -21,8 +23,8 @@ func on_timeout_complete():
 
 
 func _process(_delta):
-	
-	if parent.current_weapon == 2:
+	parent.look_at(get_global_mouse_position())
+	if player.current_weapon == 2:
 		shoot(_delta)
 
 
@@ -40,8 +42,11 @@ func shoot(_delta):
 			for i in range(projectiles):
 				var bullet_instance = fireball.instance()
 				var angle = get_angle_to(get_global_mouse_position())
+#				bullet_instance.rotation = get_angle_to(get_global_mouse_position())
 				angle += projectiles_angles[i]
-				bullet_instance.position = $FirePointer.global_position
+#				bullet_instance.position = $FirePointer.global_position
+				bullet_instance.transform = $Position2D.global_transform
+#				bullet_instance.position = $Position2D.get_global_position()
 				bullet_instance.rotation = angle
 				get_tree().get_root().add_child(bullet_instance)
 		
