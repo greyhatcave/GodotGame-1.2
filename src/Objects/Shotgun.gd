@@ -4,9 +4,14 @@ onready var parent = get_parent()
 
 var timer = null
 var fire_rate = 0.7
+var amount = 10
 var bullet_delay = 0.1
 var can_fire = true
-var fireball = preload("res://src/Objects/New_Gun_Projectile.tscn")
+var bullet_x = preload("res://src/Objects/Bullet_X.tscn")
+onready var player = get_tree().get_root().get_node("Level01").get_node("Player")
+
+onready var FiringPositions = $FiringPositions
+
 
 
 func _ready():
@@ -21,8 +26,8 @@ func on_timeout_complete():
 
 
 func _process(_delta):
-	
-	if parent.current_weapon == 2:
+	parent.look_at(get_global_mouse_position())
+	if player.current_weapon == 2:
 		shoot(_delta)
 
 
@@ -30,21 +35,11 @@ func shoot(_delta):
 	if Globals.shotgun_bullets >= 1:
 		if Input.is_action_pressed("fire") and can_fire == true:
 			Globals.shotgun_bullets -= 1
-			var projectiles_angles = [0]
-			var projectiles = 4
-			for i in range(1, projectiles * 2):
-				var num = float(i) / 8
-				projectiles_angles.append(num)
-				projectiles_angles.append(num * -1)
-		
-			for i in range(projectiles):
-				var bullet_instance = fireball.instance()
-				var angle = get_angle_to(get_global_mouse_position())
-				angle += projectiles_angles[i]
-				bullet_instance.position = $FirePointer.global_position
-				bullet_instance.rotation = angle
+			for z in amount:
+				var bullet_instance = bullet_x.instance()
+				bullet_instance.position = $FiringPositions.get_global_position()
+				bullet_instance.transform = $Position2D.global_transform
 				get_tree().get_root().add_child(bullet_instance)
-		
 			can_fire = false
 			yield(get_tree().create_timer(fire_rate), "timeout")
 			can_fire = true

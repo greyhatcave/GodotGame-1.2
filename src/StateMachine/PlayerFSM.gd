@@ -92,15 +92,16 @@ func _enter_state(new_state, _old_state):
 	if parent.player_alive:
 		match new_state:
 			states.idle:
-				parent.anim_player.play("idle_new")
+				parent.anim_player.play("idle")
 			states.run:
-				parent.anim_player.play("run_new")
+				parent.anim_player.play("run")
 			states.jump:
-				parent.anim_player.play("jump_new")
+#				parent.anim_player.play("jump_new")    #NEED JUMP ANIM
+				pass
 			states.fall:
 				pass #parent.anim_player.play("fall")
 			states.crouch:
-				parent.anim_player.play("crouch_new")
+				parent.anim_player.play("crouch")
 				if _old_state != states.crawl:
 					parent._on_crouch()
 			states.crawl:

@@ -26,7 +26,7 @@
 [ext_resource path="res://assets/png/Explosion4/0017.png" type="Texture" id=24]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 15.0832
+radius = 8.63621
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -60,6 +60,7 @@ animations = [ {
 } ]
 
 [node name="Fireball" type="RigidBody2D"]
+z_index = 1026
 collision_mask = 0
 mode = 2
 mass = 8.16327
@@ -69,13 +70,12 @@ contact_monitor = true
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( -3, -16.2006 )
+position = Vector2( 0, -0.2006 )
 shape = SubResource( 1 )
 
 [node name="Fireball_Animation" type="AnimatedSprite" parent="."]
-position = Vector2( -4, -23 )
-scale = Vector2( 0.3, 0.3 )
+position = Vector2( 0, -4 )
+scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 5 )
 animation = "Projectile_Anim"
 frame = 2
