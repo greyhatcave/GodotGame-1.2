@@ -35,8 +35,6 @@ func shoot(_delta):
 		if Input.is_action_just_pressed("fire") && can_shoot:
 			Globals.normal_bullets -= 1
 			var fireball_instance = fireball.instance()
-#			fireball_instance.position = $FirePointer.get_global_position()
-#			fireball_instance.transform = $FirePointer.global_transform
 			fireball_instance.transform = $Position2D.global_transform
 			if velocity:
 				fireball_instance.apply_impulse(Vector2(), Vector2(fireball_speed, 0).rotated(rotation + rand_range(-0.13, 0.13)))

@@ -2,10 +2,9 @@ extends RigidBody2D
 
 export var speed = 1000.0
 
-
 var projectile_speed = 1500
-var life_time = 3
-var damage = 10
+var life_time = 1
+var damage = 1
 
 
 func _ready():

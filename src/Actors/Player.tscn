@@ -1,8 +1,8 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://assets/new_player/Gunner_Black_Death.png" type="Texture" id=1]
 [ext_resource path="res://src/Objects/Gun.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/Objects/New_Gun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Objects/Shotgun.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/new_player/rifle.png" type="Texture" id=4]
 [ext_resource path="res://src/UI/GameOver.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/new_player/shotgun.png" type="Texture" id=6]
@@ -10,7 +10,6 @@
 [ext_resource path="res://src/UI/VirusID_Score.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/light.png" type="Texture" id=9]
 [ext_resource path="res://assets/new_player/Gunner_Black_Run_gun.png" type="Texture" id=10]
-[ext_resource path="res://src/Actors/Arms.gd" type="Script" id=11]
 [ext_resource path="res://assets/new_player/Gunner_Black_Crouch_gun.png" type="Texture" id=12]
 [ext_resource path="res://assets/new_player/Gunner_Black_Crouchwalk_gun.png" type="Texture" id=13]
 [ext_resource path="res://assets/new_player/Gunner_Black_Idle.png" type="Texture" id=52]
@@ -286,153 +285,153 @@ region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
-atlas = ExtResource( 12 )
+atlas = ExtResource( 10 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 12 )
+atlas = ExtResource( 10 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
-atlas = ExtResource( 12 )
+atlas = ExtResource( 10 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 10 )
-region = Rect2( 0, 0, 48, 48 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
 atlas = ExtResource( 10 )
-region = Rect2( 48, 0, 48, 48 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
 atlas = ExtResource( 10 )
-region = Rect2( 96, 0, 48, 48 )
+region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
-atlas = ExtResource( 10 )
-region = Rect2( 144, 0, 48, 48 )
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
-atlas = ExtResource( 10 )
-region = Rect2( 192, 0, 48, 48 )
+atlas = ExtResource( 12 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
-atlas = ExtResource( 10 )
-region = Rect2( 240, 0, 48, 48 )
+atlas = ExtResource( 12 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 1 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 1 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 1 )
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=29]
 flags = 4
-atlas = ExtResource( 53 )
+atlas = ExtResource( 1 )
 region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=30]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 0, 0, 48, 48 )
+atlas = ExtResource( 1 )
+region = Rect2( 288, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=31]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 48, 0, 48, 48 )
+atlas = ExtResource( 1 )
+region = Rect2( 336, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 96, 0, 48, 48 )
+atlas = ExtResource( 54 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=33]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 144, 0, 48, 48 )
+atlas = ExtResource( 54 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=34]
 flags = 4
 atlas = ExtResource( 52 )
-region = Rect2( 192, 0, 48, 48 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=35]
 flags = 4
-atlas = ExtResource( 54 )
-region = Rect2( 0, 0, 48, 48 )
+atlas = ExtResource( 52 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=36]
 flags = 4
-atlas = ExtResource( 54 )
-region = Rect2( 48, 0, 48, 48 )
+atlas = ExtResource( 52 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=37]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 48, 48 )
+atlas = ExtResource( 52 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=38]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 48, 48 )
+atlas = ExtResource( 52 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=39]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 48, 48 )
+atlas = ExtResource( 53 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=40]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 144, 0, 48, 48 )
+atlas = ExtResource( 53 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=41]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 48, 48 )
+atlas = ExtResource( 53 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=42]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 240, 0, 48, 48 )
+atlas = ExtResource( 53 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=43]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 288, 0, 48, 48 )
+atlas = ExtResource( 53 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=44]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 336, 0, 48, 48 )
+atlas = ExtResource( 53 )
+region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=45]
 flags = 4
@@ -461,35 +460,35 @@ animations = [ {
 "name": "crawl",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
-"loop": false,
-"name": "crouch",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
 "loop": true,
 "name": "run",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
-"loop": true,
-"name": "run_new",
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": false,
+"name": "crouch",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
-"loop": true,
-"name": "idle_new",
-"speed": 5.0
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
+"loop": false,
+"name": "death_new",
+"speed": 10.0
 }, {
-"frames": [ SubResource( 35 ), SubResource( 36 ) ],
+"frames": [ SubResource( 32 ), SubResource( 33 ) ],
 "loop": false,
 "name": "jump_new",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ) ],
-"loop": false,
-"name": "death_new",
-"speed": 10.0
+"frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ) ],
+"loop": true,
+"name": "idle_new",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ) ],
+"loop": true,
+"name": "run_new",
+"speed": 8.0
 }, {
 "frames": [ SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
 "loop": false,
@@ -509,7 +508,6 @@ collision_mask = 2
 script = SubResource( 1 )
 
 [node name="Arms" type="Node2D" parent="."]
-script = ExtResource( 11 )
 
 [node name="Rifle" type="Sprite" parent="Arms"]
 visible = false
@@ -532,9 +530,9 @@ z_index = 1026
 texture = ExtResource( 6 )
 offset = Vector2( 10, -2 )
 
-[node name="New_Gun" parent="Arms/Shotgun" instance=ExtResource( 3 )]
+[node name="Shotgun" parent="Arms/Shotgun" instance=ExtResource( 3 )]
 visible = false
-position = Vector2( 18.9259, -3.92643 )
+position = Vector2( 21.158, -4.37286 )
 scale = Vector2( 0.357143, 0.357143 )
 z_index = 1026
 
