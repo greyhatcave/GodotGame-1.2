@@ -21,11 +21,11 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends KinematicBody2D
 
-#signal grounded_updated(is_grounded)
+signal grounded_updated(is_grounded)
 
 const UP = Vector2(0, -1)
 const SLOPE_STOP = 64
-const CRAWL_SPEED = 3 * 140
+const CRAWL_SPEED = 3 * 70
 const BAR_SPEED = 5
 
 
@@ -62,19 +62,14 @@ func _ready():
 	current_hp = max_hp
 	
 
+
 func _physics_process(_delta):
-	
-#	if current_weapon == 1:
-#		$Arms/Rifle.look_at(get_global_mouse_position())
-#	if current_weapon == 2:
-#		parent.look_at(get_global_mouse_position())
-	
 	var was_grounded = is_grounded
 	is_grounded = is_on_floor()
 	
 	if was_grounded == null || is_grounded != was_grounded:
 		pass
-		#emit_signal(\"grounded_updated\", is_grounded)
+		emit_signal(\"grounded_updated\", is_grounded)
 
 func _apply_gravity(delta):
 	# Apply Gravity
@@ -107,6 +102,7 @@ func _input(event):
 			normal_ammo.hide()
 			$Arms/Shotgun.show()
 			$Arms/Rifle.hide()
+		
 
 func _handle_move_input(var move_speed = self.move_speed):
 	if player_alive:
@@ -127,6 +123,9 @@ func _handle_move_input(var move_speed = self.move_speed):
 				$Arms/Rifle.offset.x = 10
 				$Arms/Rifle.offset.y = -2
 				$Arms/Rifle.flip_v = true
+#				if Input.is_action_pressed(\"crouch\"):
+#					$Arms/Rifle.position.x = 0
+
 			if current_weapon == 2:
 			
 				$Arms/Shotgun.position.x = 16
@@ -137,20 +136,18 @@ func _handle_move_input(var move_speed = self.move_speed):
 			
 		elif move_direction > 0 && player_alive:		#MOVE RIGHT
 			$AnimatedSprite.flip_h = false
-#			$Arms/Rifle/Gun.position.x = 50
-#			$New_Gun.position.x = 50
 			
 			if current_weapon == 1:
 			
 				$Arms/Rifle.position.x = -16
-				$Arms/Rifle.position.y = -212
+				$Arms/Rifle.position.y = -205
 				$Arms/Rifle.offset.x = 10
 				$Arms/Rifle.offset.y = -2
 				$Arms/Rifle.flip_v = false
 				
 			if current_weapon == 2:
 				$Arms/Shotgun.position.x = -16
-				$Arms/Shotgun.position.y = -212
+				$Arms/Shotgun.position.y = -205
 				$Arms/Shotgun.offset.x = 10
 				$Arms/Shotgun.offset.y = -2
 				$Arms/Shotgun.flip_v = false
@@ -196,11 +193,12 @@ func _on_crouch():
 func _on_stand():
 	standing_collision.disabled = false
 	crouching_collision.disabled = true
-	#while standing_collision.disabled && !state_machine.is_crouched():
-	#	if can_stand():
-	#		standing_collision.disabled = false
-	#		crouching_collision.disabled = true
-	#	yield(get_tree(), \"physics_frame\")
+
+	while standing_collision.disabled && !state_machine.is_crouched():
+		if can_stand():
+			standing_collision.disabled = false
+			crouching_collision.disabled = true
+		yield(get_tree(), \"physics_frame\")
 
 func can_stand() -> bool:
 	var space_state = get_world_2d().direct_space_state
@@ -255,62 +253,62 @@ region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 10 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 10 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 10 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 10 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 10 )
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 10 )
 region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
-atlas = ExtResource( 10 )
+atlas = ExtResource( 13 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 10 )
+atlas = ExtResource( 13 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
-atlas = ExtResource( 10 )
+atlas = ExtResource( 13 )
 region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 10 )
+atlas = ExtResource( 13 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 10 )
+atlas = ExtResource( 13 )
 region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 10 )
+atlas = ExtResource( 13 )
 region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=21]
@@ -370,83 +368,83 @@ region = Rect2( 336, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
-atlas = ExtResource( 54 )
+atlas = ExtResource( 52 )
 region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=33]
 flags = 4
-atlas = ExtResource( 54 )
+atlas = ExtResource( 52 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=34]
 flags = 4
 atlas = ExtResource( 52 )
-region = Rect2( 0, 0, 48, 48 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=35]
 flags = 4
 atlas = ExtResource( 52 )
-region = Rect2( 48, 0, 48, 48 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=36]
 flags = 4
 atlas = ExtResource( 52 )
-region = Rect2( 96, 0, 48, 48 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=37]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 144, 0, 48, 48 )
+atlas = ExtResource( 55 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=38]
 flags = 4
-atlas = ExtResource( 52 )
-region = Rect2( 192, 0, 48, 48 )
+atlas = ExtResource( 55 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=39]
 flags = 4
-atlas = ExtResource( 53 )
-region = Rect2( 0, 0, 48, 48 )
+atlas = ExtResource( 55 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=40]
 flags = 4
 atlas = ExtResource( 53 )
-region = Rect2( 48, 0, 48, 48 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=41]
 flags = 4
 atlas = ExtResource( 53 )
-region = Rect2( 96, 0, 48, 48 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=42]
 flags = 4
 atlas = ExtResource( 53 )
-region = Rect2( 144, 0, 48, 48 )
+region = Rect2( 96, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=43]
 flags = 4
 atlas = ExtResource( 53 )
-region = Rect2( 192, 0, 48, 48 )
+region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=44]
 flags = 4
 atlas = ExtResource( 53 )
-region = Rect2( 240, 0, 48, 48 )
+region = Rect2( 192, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=45]
 flags = 4
-atlas = ExtResource( 55 )
-region = Rect2( 0, 0, 48, 48 )
+atlas = ExtResource( 53 )
+region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=46]
 flags = 4
-atlas = ExtResource( 55 )
-region = Rect2( 48, 0, 48, 48 )
+atlas = ExtResource( 54 )
+region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=47]
 flags = 4
-atlas = ExtResource( 55 )
-region = Rect2( 96, 0, 48, 48 )
+atlas = ExtResource( 54 )
+region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="SpriteFrames" id=48]
 animations = [ {
@@ -457,42 +455,42 @@ animations = [ {
 }, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
-"name": "crawl",
+"name": "run",
 "speed": 8.0
 }, {
 "frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
 "loop": true,
-"name": "run",
+"name": "crawl",
 "speed": 8.0
 }, {
 "frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
 "loop": false,
 "name": "crouch",
-"speed": 8.0
+"speed": 16.0
 }, {
 "frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
 "loop": false,
 "name": "death_new",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 32 ), SubResource( 33 ) ],
-"loop": false,
-"name": "jump_new",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ) ],
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
 "loop": true,
 "name": "idle_new",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ) ],
+"frames": [ SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
+"loop": false,
+"name": "crouch_new",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
 "loop": true,
 "name": "run_new",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
+"frames": [ SubResource( 46 ), SubResource( 47 ) ],
 "loop": false,
-"name": "crouch_new",
+"name": "jump_new",
 "speed": 8.0
 } ]
 
@@ -511,7 +509,7 @@ script = SubResource( 1 )
 
 [node name="Rifle" type="Sprite" parent="Arms"]
 visible = false
-position = Vector2( -16, -212 )
+position = Vector2( -16, -205 )
 scale = Vector2( 2.8, 2.8 )
 z_index = 1026
 texture = ExtResource( 4 )
@@ -521,6 +519,8 @@ offset = Vector2( 10, -2 )
 visible = false
 position = Vector2( 18.7625, -3.79962 )
 scale = Vector2( 0.357143, 0.357143 )
+
+[node name="Tween" type="Tween" parent="Arms/Rifle"]
 
 [node name="Shotgun" type="Sprite" parent="Arms"]
 visible = false
