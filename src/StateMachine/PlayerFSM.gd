@@ -46,7 +46,6 @@ func _get_transition(_delta):
 				elif Input.is_action_pressed("crouch"):
 					return states.crouch
 			states.run:
-				print("RUN")
 				if !parent.is_on_floor():#!parent.is_grounded:
 					if parent.velocity.y < 0:
 						return states.jump
@@ -63,19 +62,16 @@ func _get_transition(_delta):
 #					if Input.is_action_pressed("crouch"):
 #						return states.crawl
 			states.jump:
-				print("JUMP")
 				if parent.velocity.y >= 0:#parent.is_grounded:
 					return states.fall
 				elif parent.is_on_floor():#parent.velocity.y >= 0:
 					return states.idle
 			states.fall:
-				print("FALL")
 				if parent.is_on_floor():#parent.is_grounded:
 					return states.idle
 				elif parent.velocity.y < 0:
 					return states.jump
 			states.crouch:
-				print("CROUCH")
 				if !Input.is_action_pressed("crouch") && parent.can_stand():
 					return states.idle
 				elif !parent.is_on_floor():#!parent.is_grounded:
@@ -86,7 +82,6 @@ func _get_transition(_delta):
 				elif abs(parent.velocity.x) >= STOP_THRESHOLD:
 					return states.crawl
 			states.crawl:
-				print("CRAWL")
 				if !Input.is_action_pressed("crouch") && parent.can_stand():
 					return states.run
 				elif !parent.is_on_floor():#!parent.is_grounded:
@@ -97,7 +92,6 @@ func _get_transition(_delta):
 				elif abs(parent.velocity.x) >= STOP_THRESHOLD:
 					return states.crawl
 				elif abs(parent.velocity.x) <= STOP_THRESHOLD:
-					print("CROUCHING")
 					parent.anim_player.stop()
 					
 		return null
