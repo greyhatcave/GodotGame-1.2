@@ -46,49 +46,63 @@ func _get_transition(_delta):
 				elif Input.is_action_pressed("crouch"):
 					return states.crouch
 			states.run:
-				if !parent.is_grounded:
+				print("RUN")
+				if !parent.is_on_floor():#!parent.is_grounded:
 					if parent.velocity.y < 0:
 						return states.jump
-					elif parent.velocity.y >= 0:
+					else:
+						#parent.velocity.y >= 0:
 						return states.fall
-				elif parent.velocity.x == 0:
+				elif abs(parent.velocity.x) < STOP_THRESHOLD:
 					return states.idle
 				elif Input.is_action_pressed("crouch"):
 					return states.crawl
+#				elif parent.velocity.x == 0:
+#					return states.idle
+#				elif parent.velocity.x != 0:
+#					if Input.is_action_pressed("crouch"):
+#						return states.crawl
 			states.jump:
-				if parent.is_grounded:
-					return states.idle
-				elif parent.velocity.y >= 0:
+				print("JUMP")
+				if parent.velocity.y >= 0:#parent.is_grounded:
 					return states.fall
+				elif parent.is_on_floor():#parent.velocity.y >= 0:
+					return states.idle
 			states.fall:
-				if parent.is_grounded:
+				print("FALL")
+				if parent.is_on_floor():#parent.is_grounded:
 					return states.idle
 				elif parent.velocity.y < 0:
 					return states.jump
 			states.crouch:
-				if !Input.is_action_pressed("crouch"): #&& parent.can_stand():
+				print("CROUCH")
+				if !Input.is_action_pressed("crouch") && parent.can_stand():
 					return states.idle
-				elif !parent.is_grounded:
+				elif !parent.is_on_floor():#!parent.is_grounded:
 					if parent.velocity.y < 0:
 						return states.jump
-					else:
-						return states.fall
+#					else:
+#						return states.fall
 				elif abs(parent.velocity.x) >= STOP_THRESHOLD:
 					return states.crawl
 			states.crawl:
-				if !Input.is_action_pressed("crouch"): #&& parent.can_stand():
+				print("CRAWL")
+				if !Input.is_action_pressed("crouch") && parent.can_stand():
 					return states.run
-				elif !parent.is_grounded:
+				elif !parent.is_on_floor():#!parent.is_grounded:
 					if parent.velocity.y < 0:
 						return states.jump
-					else:
-						return states.fall
+#					else:
+#						return states.fall
 				elif abs(parent.velocity.x) >= STOP_THRESHOLD:
-					return states.crouch
+					return states.crawl
+				elif abs(parent.velocity.x) <= STOP_THRESHOLD:
+					print("CROUCHING")
+					parent.anim_player.stop()
 					
 		return null
 
-func _enter_state(new_state, _old_state):
+func _enter_state(new_state, old_state):
 	if parent.player_alive:
 		match new_state:
 			states.idle:
@@ -102,18 +116,20 @@ func _enter_state(new_state, _old_state):
 				pass #parent.anim_player.play("fall")
 			states.crouch:
 				parent.anim_player.play("crouch")
-				if _old_state != states.crawl:
+				if old_state != states.crawl:
 					parent._on_crouch()
 			states.crawl:
-				pass #parent.anim_player.play("crawl_new")
-				#if old_state != states.crouch:
-					#parent._on_crouch()
+				parent.anim_player.play("crawl")
+				if old_state != states.crouch:
+					parent._on_crouch()
 
 func _exit_state(old_state, new_state):
 	match old_state:
 		states.crouch:
 			if new_state != states.crawl:
 				parent._on_stand()
+#			else:
+#				states.crawl
 		states.crawl:
 			if new_state != states.crouch:
 				parent._on_stand()
